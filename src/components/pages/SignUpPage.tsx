@@ -6,16 +6,20 @@
 import { Link } from "react-router-dom"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import { LinkIcon } from "@/components/icons"
 
 export default function SignUpPage() {
     return (
         <div className="flex min-h-[100dvh] items-center justify-center bg-background px-4 py-12 sm:px-6 lg:px-8">
-            <div className="mx-auto w-full max-w-md space-y-6">
-                <div className="text-center">
+            <div className="mx-auto w-full max-w-md space-y-6 text-center">
+                <div className="flex justify-center">
+                    <LinkIcon className="h-12 w-12"/>
+                </div>
+                <div>
                     <h1 className="text-3xl font-bold tracking-tight text-foreground">Create a new account</h1>
                     <p className="mt-2 text-muted-foreground">
                         Already have an account?{" "}
-                        <Link to="/" className="font-medium text-primary hover:underline" prefetch={false}>
+                        <Link to="/login" className="font-medium text-primary hover:underline" prefetch={false}>
                             Sign in
                         </Link>
                     </p>
