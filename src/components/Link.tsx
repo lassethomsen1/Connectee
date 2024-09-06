@@ -16,6 +16,7 @@ const icons = {
 
 export default function Link({url, soMeHandle, website}: LinkProps) {
 
+    // @ts-ignore
     const iconURL = icons[website];
 
     return (
