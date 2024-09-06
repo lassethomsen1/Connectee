@@ -10,7 +10,7 @@ import {
     DropdownMenuSeparator,
     DropdownMenuItem
 } from "@/components/ui/dropdown-menu";
-import {LinkIcon, SearchIcon} from "./icons";
+import {LinkIcon, SearchIcon} from "./Icons";
 import {Link} from "react-router-dom";
 
 export function Header() {

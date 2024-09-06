@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //@ts-nocheck
 import { Link } from "react-router-dom";
-import { LinkIcon, HomeIcon} from "./icons";
+import { LinkIcon, HomeIcon} from "./Icons";
 
 export function Sidebar() {
     return (
