@@ -8,7 +8,7 @@
 import { Link } from "react-router-dom"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { LinkIcon } from "@/components/icons"
+import { LinkIcon } from "@/components/Icons"
 
 export default function SignUpPage() {
     return (
