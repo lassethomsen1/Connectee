@@ -11,11 +11,13 @@ import {
     DropdownMenuItem
 } from "@/components/ui/dropdown-menu";
 import {LinkIcon, SearchIcon} from "./Icons";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import {supabase} from "../supabase.ts";
 
 export function Header() {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
+
     return (
         <header className="flex h-14 lg:h-[60px] items-center gap-4 border-b bg-muted/40 px-6">
             <Link to="#" className="lg:hidden" prefetch={false}>
@@ -40,6 +42,11 @@ export function Header() {
 }
 
 function UserMenu() {
+    const navigate = useNavigate();
+    const handleSignOut = async () => {
+        await supabase.auth.signOut();
+        navigate("/login");
+    }
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -61,7 +68,7 @@ function UserMenu() {
                 <DropdownMenuItem>Settings</DropdownMenuItem>
                 <DropdownMenuItem>Support</DropdownMenuItem>
                 <DropdownMenuSeparator/>
-                <DropdownMenuItem>Logout</DropdownMenuItem>
+                <DropdownMenuItem onClick={handleSignOut}>Logout</DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>
     );

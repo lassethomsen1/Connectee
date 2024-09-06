@@ -7,23 +7,29 @@ import {useEffect, useState} from "react";
 import {supabase} from "../../supabase.ts";
 import {useNavigate} from "react-router-dom";
 import CreateLinkInputForm from "../CreateLinkInputForm.tsx";
-import {Button} from "../ui/button.tsx";
 
 export default function DashboardPage() {
     const [user, setUser] = useState<any>(null);
+    const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
     useEffect(() => {
         async function getUserSession() {
             const { data: {session}} = await supabase.auth.getSession();
             setUser(session?.user ?? null);
+            setLoading(false);
         }
 
         getUserSession();
     }, []);
+    useEffect(() => {
+        if (!loading && !user) {
+            navigate("/login");
+        }
+    }, [loading, user, navigate]);
 
-    if (!user) {
-        navigate("/login");
+    if (loading) {
+        return <div>Loading...</div>;
     }
 
     return (
