@@ -3,7 +3,7 @@ type LinkProps = {
     soMeHandle: string,
     website: string
 };
-
+// det her skal være i supabase
 const icons = {
     "github": "https://cdn-icons-png.flaticon.com/128/733/733553.png",
     "instagram": "https://cdn-icons-png.flaticon.com/128/2111/2111463.png",
