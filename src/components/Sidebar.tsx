@@ -8,7 +8,7 @@ export function Sidebar() {
                 <div className="flex h-[60px] items-center border-b px-6">
                     <Link to="/" className="flex items-center gap-2 font-semibold" prefetch={false}>
                         <LinkIcon className="h-6 w-6" />
-                        <span className="">Linktree Clone</span>
+                        <span className="">Connectee</span>
                     </Link>
                 </div>
                 <div className="flex-1 overflow-auto py-2">
