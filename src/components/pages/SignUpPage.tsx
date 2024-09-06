@@ -62,7 +62,7 @@ function ChromeIcon(props) {
     )
 }
 
-
+//todo - lav det her til github icon
 function GitlabIcon(props) {
     return (
         <svg
