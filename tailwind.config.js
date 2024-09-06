@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+import { fontFamily } from 'tailwindcss/defaultTheme'
 export default {
     darkMode: ["class"],
     content: [
@@ -8,7 +9,8 @@ export default {
   theme: {
   	extend: {
   		borderRadius: {
-  			lg: 'var(--radius)',
+            xl: `calc(var(--radius) + 4px)`,
+            lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
@@ -53,7 +55,21 @@ export default {
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
   			}
-  		}
+  		},
+        keyframes: {
+            "accordion-down": {
+                from: { height: 0 },
+                to: { height: "var(--radix-accordion-content-height)" }
+            },
+            "accordion-up": {
+                from: { height: "var(--radix-accordion-content-height)" },
+                to: { height: 0 }
+            }
+        },
+        fontFamily: {
+            heading: ['var(--font-heading)', ...fontFamily.sans],
+            body: ['var(--font-body)', ...fontFamily.sans]
+        }
   	}
   },
   plugins: [require("tailwindcss-animate")],
