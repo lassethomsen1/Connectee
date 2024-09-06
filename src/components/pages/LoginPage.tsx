@@ -28,7 +28,7 @@ export default function LoginPage() {
     }, [navigate]);
 
     async function signInWithGithub() {
-        const redirectUrl = `${window.location.origin}/dashboard`; // Simplified URL construction
+        const redirectUrl = `${window.location.protocol}//${window.location.hostname}:${window.location.port}/dashboard`; // Simplified URL construction
 
         const { error } = await supabase.auth.signInWithOAuth({
             provider: 'github',
