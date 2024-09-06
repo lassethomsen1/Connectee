@@ -1,6 +1,6 @@
-import background from "../assets/background.jpg";
-import Title from "./Title.tsx";
-import Link from "./Link.tsx";
+import background from "../../assets/background.jpg";
+import Title from "../Title.tsx";
+import Link from "../Link.tsx";
 
 export default function HubPage(){
     return (
