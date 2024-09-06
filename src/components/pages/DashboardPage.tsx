@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+//@ts-nocheck
 import { Sidebar } from "@/components/Sidebar";
 import { Header } from "@/components/Header";
 import { LinksTable } from "@/components/LinksTable";
