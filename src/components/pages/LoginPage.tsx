@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { SVGProps } from "react";
 import { JSX } from "react/jsx-runtime";
-import { LinkIcon } from "@/components/icons";
+import { LinkIcon } from "@/components/Icons";
 
 export default function LoginPage() {
     return (
