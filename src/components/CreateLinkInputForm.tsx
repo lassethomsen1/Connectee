@@ -5,12 +5,39 @@
  */
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //@ts-nocheck
-import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
-import { Label } from "@/components/ui/label"
-import { Input } from "@/components/ui/input"
+import {
+    Dialog,
+    DialogTrigger,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+    DialogDescription,
+    DialogFooter
+} from "@/components/ui/dialog"
+import {Button} from "@/components/ui/button"
+import {Label} from "@/components/ui/label"
+import {Input} from "@/components/ui/input"
+import {useState} from "react"
 
 export default function CreateLinkInputForm() {
+    const [formData, setFormData] = useState({
+        url: "",
+        handle: "",
+        imageUrl: "",
+    });
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const {name, value} = e.target;
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
+    }
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        console.log(formData);
+
+    }
+
     return (
         <Dialog>
             <DialogTrigger asChild>
@@ -21,32 +48,36 @@ export default function CreateLinkInputForm() {
                     <DialogTitle>Create New Link</DialogTitle>
                     <DialogDescription>Fill out the form to create a new link.</DialogDescription>
                 </DialogHeader>
-                <div className="grid gap-4 py-4">
-                    <div className="grid items-center grid-cols-4 gap-4">
-                        <Label htmlFor="url" className="text-left">
-                            URL
-                        </Label>
-                        <Input id="url" placeholder="https://example.com" className="col-span-3" />
+                <form onSubmit={handleSubmit}>
+                    <div className="grid gap-4 py-4">
+                        <div className="grid items-center grid-cols-4 gap-4">
+                            <Label htmlFor="url" className="text-left">
+                                URL
+                            </Label>
+                            <Input id="url" onChange={handleChange} value={formData.url} placeholder="https://example.com"
+                                   className="col-span-3"/>
+                        </div>
+                        <div className="grid items-center grid-cols-4 gap-4">
+                            <Label htmlFor="handle" className="text-left">
+                                Handle
+                            </Label>
+                            <Input id="handle" onChange={handleChange} value={formData.handle} placeholder="mylink" className="col-span-3"/>
+                        </div>
+                        <div className="grid items-center grid-cols-4 gap-4">
+                            <Label htmlFor="image-url" className="text-left">
+                                Image URL
+                            </Label>
+                            <Input id="image-url" onChange={handleChange} value={formData.imageUrl} placeholder="https://example.com/image.jpg"
+                                   className="col-span-3"/>
+                        </div>
                     </div>
-                    <div className="grid items-center grid-cols-4 gap-4">
-                        <Label htmlFor="handle" className="text-left">
-                            Handle
-                        </Label>
-                        <Input id="handle" placeholder="mylink" className="col-span-3" />
-                    </div>
-                    <div className="grid items-center grid-cols-4 gap-4">
-                        <Label htmlFor="image-url" className="text-left">
-                            Image URL
-                        </Label>
-                        <Input id="image-url" placeholder="https://example.com/image.jpg" className="col-span-3" />
-                    </div>
-                </div>
-                <DialogFooter>
-                    <div>
-                        <Button variant="ghost">Close</Button>
-                    </div>
-                    <Button type="submit">Create Link</Button>
-                </DialogFooter>
+                    <DialogFooter>
+                        <div>
+                            <Button variant="ghost">Close</Button>
+                        </div>
+                        <Button type="submit">Create Link</Button>
+                    </DialogFooter>
+                </form>
             </DialogContent>
         </Dialog>
     )
