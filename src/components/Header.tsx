@@ -13,8 +13,9 @@ import {
 import {LinkIcon, SearchIcon} from "./Icons";
 import {Link, useNavigate} from "react-router-dom";
 import {supabase} from "../supabase.ts";
+import CopyLinkHubButton from "../CopyLinkHubButton.tsx";
 
-export function Header() {
+export function Header({userid}: { userid: string }) {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
 
@@ -36,12 +37,12 @@ export function Header() {
                     </div>
                 </form>
             </div>
-            <UserMenu/>
+            <UserMenu userid={userid}/>
         </header>
     );
 }
 
-function UserMenu() {
+function UserMenu({userid}: { userid: string }) {
     const navigate = useNavigate();
     const handleSignOut = async () => {
         await supabase.auth.signOut();
@@ -49,6 +50,7 @@ function UserMenu() {
     }
     return (
         <DropdownMenu>
+            <CopyLinkHubButton userid={userid}/>
             <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="icon" className="rounded-full border w-8 h-8">
                     <img
