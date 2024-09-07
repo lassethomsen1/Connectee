@@ -18,8 +18,9 @@ import {Button} from "@/components/ui/button"
 import {Label} from "@/components/ui/label"
 import {Input} from "@/components/ui/input"
 import {useState} from "react"
+import {supabase} from "../supabase.ts";
 
-export default function CreateLinkInputForm() {
+export default function CreateLinkInputForm({user_id}: string) {
     const [formData, setFormData] = useState({
         url: "",
         handle: "",
@@ -32,10 +33,20 @@ export default function CreateLinkInputForm() {
             [name]: value,
         });
     }
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    async function handleSubmit (e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         console.log(formData);
-
+        const {error} = await supabase
+            .from("url")
+            .insert([{
+                user_id: user_id,
+                url: formData.url,
+                handle: formData.handle,
+                img_url: formData.imageUrl,
+            }]);
+        if (error) {
+            console.error("Error creating link:", error.message);
+        }
     }
 
     return (
