@@ -107,13 +107,13 @@ function UserMenu({userid}: { userid: string }) {
                             <Label htmlFor="title" className="text-left">
                                 Title
                             </Label>
-                            <Input id="title" className="col-span-3"/>
+                            <Input id="title" placeholder="Your name maybe ¯\_(ツ)_/¯ " className="col-span-3"/>
                         </div>
                         <div className="grid grid-cols-4 items-center gap-4">
                             <Label htmlFor="bg-url" className="text-left">
                                 Background image URL
                             </Label>
-                            <Input id="bg-url" className="col-span-3"/>
+                            <Input id="bg-url" placeholder="https://example.com" className="col-span-3"/>
                         </div>
                     </div>
                     <SheetFooter>
