@@ -29,7 +29,7 @@ export default function LoginPage() {
 
     async function signInWithGithub() {
 
-        const redirectUrl = import.meta.env.VITE_REDIRECT_URL;
+        const redirectUrl = import.meta.env.VITE_BASE_URL + '/dashboard';
         const { error } = await supabase.auth.signInWithOAuth({
             provider: 'github',
             options: {
