@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //@ts-nocheck
 import { Link } from "react-router-dom";
-import { LinkIcon, HomeIcon} from "./Icons";
+import {LinkIcon, HomeIcon, SettingsIcon} from "./Icons";
 
 export function Sidebar() {
     return (
@@ -18,7 +18,7 @@ export function Sidebar() {
                         <NavItem to="#" icon={<HomeIcon />} label="Dashboard" />
                         <NavItem to="/" icon={<LinkIcon />} label="Links" />
                         {/*<NavItem to="#" icon={<UsersIcon />} label="Users" />*/}
-                        {/* <NavItem to="#" icon={<SettingsIcon />} label="Settings" /> */}
+                        <NavItem to="#" icon={<SettingsIcon />} label="Linkhub Settings" />
                     </nav>
                 </div>
             </div>
