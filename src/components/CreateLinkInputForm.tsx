@@ -54,26 +54,26 @@ export default function CreateLinkInputForm() {
                             <Label htmlFor="url" className="text-left">
                                 URL
                             </Label>
-                            <Input id="url" onChange={handleChange} value={formData.url} placeholder="https://example.com"
+                            <Input required id="url" name="url" onChange={handleChange} value={formData.url} placeholder="https://example.com"
                                    className="col-span-3"/>
                         </div>
                         <div className="grid items-center grid-cols-4 gap-4">
                             <Label htmlFor="handle" className="text-left">
                                 Handle
                             </Label>
-                            <Input id="handle" onChange={handleChange} value={formData.handle} placeholder="mylink" className="col-span-3"/>
+                            <Input required id="handle" name="handle" onChange={handleChange} value={formData.handle} placeholder="mylink" className="col-span-3"/>
                         </div>
                         <div className="grid items-center grid-cols-4 gap-4">
                             <Label htmlFor="image-url" className="text-left">
                                 Image URL
                             </Label>
-                            <Input id="image-url" onChange={handleChange} value={formData.imageUrl} placeholder="https://example.com/image.jpg"
+                            <Input required id="image-url" name="imageUrl" onChange={handleChange} value={formData.imageUrl} placeholder="https://example.com/image.jpg"
                                    className="col-span-3"/>
                         </div>
                     </div>
                     <DialogFooter>
                         <div>
-                            <Button variant="ghost">Close</Button>
+                            <Button type="button" variant="ghost">Close</Button>
                         </div>
                         <Button type="submit">Create Link</Button>
                     </DialogFooter>
