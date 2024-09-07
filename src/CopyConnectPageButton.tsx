@@ -1,6 +1,6 @@
 import {Button} from "./components/ui/button.tsx";
 //todo lav alerten om til en toast
-export default function CopyLinkHubButton({userid}: {userid: string}) {
+export default function CopyConnectPageButton({userid}: {userid: string}) {
     const baseurl = import.meta.env.VITE_BASE_URL;
     const url = `${baseurl}/hub/${userid}`;
     return (

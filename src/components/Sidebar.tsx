@@ -18,7 +18,7 @@ export function Sidebar() {
                         <NavItem to="#" icon={<HomeIcon />} label="Dashboard" />
                         <NavItem to="/" icon={<LinkIcon />} label="Links" />
                         {/*<NavItem to="#" icon={<UsersIcon />} label="Users" />*/}
-                        <NavItem to="#" icon={<SettingsIcon />} label="Linkhub Settings" />
+                        <NavItem to="#" icon={<SettingsIcon />} label="ConnectPage Settings" />
                     </nav>
                 </div>
             </div>

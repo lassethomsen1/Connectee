@@ -1,4 +1,3 @@
-import background from "../../assets/background.jpg";
 import Title from "../Title.tsx";
 import Link from "../Link.tsx";
 import {useParams} from "react-router-dom";
@@ -16,7 +15,7 @@ interface settings {
     bg_url: string;
 }
 
-export default function HubPage() {
+export default function ConnectPage() {
     const {userid} = useParams();
     const [links, setLinks] = useState<link[]>([]);
     const [settings, setSettings] = useState<settings | null>(null);

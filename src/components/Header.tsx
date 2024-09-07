@@ -24,7 +24,7 @@ import {Label} from "@/components/ui/label";
 import {LinkIcon, SearchIcon} from "./Icons";
 import {Link, useNavigate} from "react-router-dom";
 import {supabase} from "../supabase.ts";
-import CopyLinkHubButton from "../CopyLinkHubButton.tsx";
+import CopyConnectPageButton from "../CopyConnectPageButton.tsx";
 import {useState} from "react";
 
 export function Header({userid}: { userid: string }) {
@@ -72,7 +72,7 @@ function UserMenu({userid}: { userid: string }) {
     return (
         <>
             <DropdownMenu>
-                <CopyLinkHubButton userid={userid}/>
+                <CopyConnectPageButton userid={userid}/>
                 <DropdownMenuTrigger asChild>
                     <Button variant="ghost" size="icon" className="rounded-full border w-8 h-8">
                         <img
@@ -97,9 +97,9 @@ function UserMenu({userid}: { userid: string }) {
             <Sheet open={isSettingsOpen} onOpenChange={setIsSettingsOpen}>
                 <SheetContent side={"right"}>
                     <SheetHeader>
-                        <SheetTitle>Edit your Linkhub</SheetTitle>
+                        <SheetTitle>Edit your ConnectPage</SheetTitle>
                         <SheetDescription>
-                            Here you can edit your Linkhub settings. Make sure to save your changes before closing this.
+                            Here you can edit your ConnectPage settings. Make sure to save your changes before closing this.
                         </SheetDescription>
                     </SheetHeader>
                     <div className="grid gap-4 py-4">
