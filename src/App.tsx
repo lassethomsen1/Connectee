@@ -12,6 +12,7 @@ function App() {
                 <Route path="/dashboard" element={<DashboardPage />} />
                 <Route path={"/login"} element={<LoginPage/>}/>
                 <Route path={"/signup"} element={<SignUpPage/>}/>
+                <Route path={"/hub/:userid"} element={<HubPage />}/>
             </Routes>
         </Router>
     );

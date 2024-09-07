@@ -1,9 +1,10 @@
 type LinkProps = {
+    key: number,
+    handle: string,
     url: string,
-    soMeHandle: string,
-    website: string
+    imgurl: string
 };
-// det her skal være i supabase
+/* det her skal være i supabase
 const icons = {
     "github": "https://cdn-icons-png.flaticon.com/128/733/733553.png",
     "instagram": "https://cdn-icons-png.flaticon.com/128/2111/2111463.png",
@@ -13,17 +14,16 @@ const icons = {
     "facebook": "https://cdn-icons-png.flaticon.com/128/733/733547.png",
     "x": "https://cdn-icons-png.flaticon.com/512/5968/5968958.png"
 }
+*/
+export default function Link({imgurl, handle, url}: LinkProps) {
 
-export default function Link({url, soMeHandle, website}: LinkProps) {
-
-    // @ts-ignore
-    const iconURL = icons[website];
+    //const iconURL = icons[website];
 
     return (
         <a href={url}
            className={"inline-flex mt-3 items-center bg-amber-50 bg-opacity-35 rounded-2xl w-[300px] hover:bg-opacity-80"}>
-            <img className={"my-1 ml-1 max-w-[48px] max-h-[48px] "} src={iconURL} alt={"icon"}/>
-            <span className={"ml-2.5 truncate"}>@{soMeHandle}</span>
+            <img className={"my-1 ml-1 max-w-[48px] max-h-[48px] "} src={imgurl} alt={"icon"}/>
+            <span className={"ml-2.5 truncate"}>@{handle}</span>
         </a>
     )
 }
