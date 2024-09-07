@@ -9,7 +9,7 @@ interface links {
     id: number;
     handle: string;
     url: string;
-    imgurl: string;
+    img_url: string;
 }
 
 export default function HubPage() {
@@ -38,7 +38,7 @@ export default function HubPage() {
             <Title></Title>
             <div className={"flex flex-col items-center"}>
                 {links.map((link: links) => (
-                    <Link key={link.id} handle={link.handle} url={link.url} imgurl={link.imgurl} />
+                    <Link key={link.id} handle={link.handle} url={link.url} imgurl={link.img_url} />
                 ))}
             </div>
         </div>
