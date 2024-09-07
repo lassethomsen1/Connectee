@@ -1,6 +1,7 @@
 ## todo
 
-- der skal være en route som tager userName som parameter og returnerer linkhubben for den bruger
 - find ud af om bruger skal kunne sætte sit eget baggrundsbillede eller brugeren skal vælge mellem nogle forudbestemte
-- tilføj endnu en col ved linktable som er en url til selve profilen /// eller ændre website til at være en url til profilen
-- 
+- find ud af hvordan navnet skal blive vist på linkhub ---- <mark>det skal være i linkhub settings</mark>
+- lav landing page
+- lav linkhub setting page eller slider fra venstre side 
+- burde linkhub kaldes for connectpage? 
