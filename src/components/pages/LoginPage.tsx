@@ -28,7 +28,7 @@ export default function LoginPage() {
     }, [navigate]);
 
     async function signInWithGithub() {
-        // env variable for vercel -- det andet er for localhost
+
         const redirectUrl = import.meta.env.VITE_REDIRECT_URL;
         const { error } = await supabase.auth.signInWithOAuth({
             provider: 'github',
