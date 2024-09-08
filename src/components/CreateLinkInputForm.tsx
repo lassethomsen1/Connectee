@@ -39,7 +39,7 @@ export default function CreateLinkInputForm({ user_id, onNewLink }) {
                 handle: formData.handle,
                 img_url: formData.imageUrl,
             }])
-            .select("*");
+            .select("*"); // for fetching the newly created link
 
         if (error) {
             console.error("Error creating link:", error.message);
