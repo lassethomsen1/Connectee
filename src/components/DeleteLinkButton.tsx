@@ -11,12 +11,12 @@ import {
 } from "@/components/ui/alert-dialog"
 import {Button} from "./ui/button.tsx";
 import {supabase} from "../supabase.ts";
+import {useState} from "react";
 
 
 export default function DeleteLinkButton( {id}: {id: string}) {
-    //backend for delete link
+    const [open, setOpen] = useState(false);
     async function handleDelete() {
-        console.log("Deleting link with id:", id);
         const {error} = await supabase
             .from("url")
             .delete()
@@ -26,7 +26,7 @@ export default function DeleteLinkButton( {id}: {id: string}) {
         }
     }
     return (
-        <AlertDialog>
+        <AlertDialog open={open} onOpenChange={setOpen}>
             <AlertDialogTrigger asChild>
                 <Button size="sm" variant="destructive">Delete</Button>
             </AlertDialogTrigger>
