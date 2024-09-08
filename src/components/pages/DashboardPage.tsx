@@ -11,17 +11,40 @@ import CreateLinkInputForm from "../CreateLinkInputForm.tsx";
 export default function DashboardPage() {
     const [user, setUser] = useState<any>(null);
     const [loading, setLoading] = useState(true);
+    const [links, setLinks] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
         async function getUserSession() {
-            const { data: {session}} = await supabase.auth.getSession();
+            const { data: { session }} = await supabase.auth.getSession();
             setUser(session?.user ?? null);
             setLoading(false);
         }
 
-        getUserSession();
-    }, []);
+        getUserSession(); // Only fetch user session here
+    }, []); // Empty dependency array, runs only once when the component mounts
+
+    useEffect(() => {
+        async function fetchLinks() {
+            if (user?.id) { // Check if user.id is available
+                const { data, error } = await supabase
+                    .from("url")
+                    .select("*")
+                    .eq("user_id", user.id);
+
+                if (error) {
+                    console.error("Error fetching links:", error.message);
+                    return;
+                } else {
+                    setLinks(data);
+                }
+            }
+        }
+
+        fetchLinks(); // Fetch links once user.id is available
+    }, [user]); // Depend on `user`, run this effect whenever `user` changes
+
+
     useEffect(() => {
         if (!loading && !user) {
             navigate("/login");
@@ -30,6 +53,9 @@ export default function DashboardPage() {
 
     if (loading) {
         return <div>Loading...</div>;
+    }
+    const handleNewLink = async (newLink) => {
+        setLinks([...links, newLink]);
     }
 
     return (
@@ -40,9 +66,9 @@ export default function DashboardPage() {
                 <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-6">
                     <div className="flex items-center">
                         <h1 className="font-semibold text-lg md:text-2xl">Links</h1>
-                        <CreateLinkInputForm user_id={user.id} />
+                        <CreateLinkInputForm onNewLink={handleNewLink} user_id={user.id} />
                     </div>
-                    <LinksTable user={user}/>
+                    <LinksTable links={links}/>
                 </main>
             </div>
         </div>
