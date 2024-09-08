@@ -7,10 +7,11 @@ import {supabase} from "../supabase.ts";
 
 //todo fix de her types
 interface LinkTableProps {
-    user: any;
+    links: any[];
+    onDelete: (id: number) => void;
 }
 
-export function LinksTable({links}) {
+export function LinksTable({links, onDelete}: LinkTableProps) {
 
     return (
         <div className="border shadow-sm rounded-lg">
@@ -34,6 +35,7 @@ export function LinksTable({links}) {
                             imgUrl={link.img_url}
                             url={link.url}
                             handle={link.handle}
+                            onDelete={onDelete}
                         />
                     ))}
                 </TableBody>

@@ -58,6 +58,9 @@ export default function DashboardPage() {
         setLinks([...links, newLink]);
     }
 
+    const handleDeleteLink = (deletedId: number) => {
+        setLinks((prevLinks) => prevLinks.filter(link => link.id !== deletedId));
+    };
     return (
         <div className="grid min-h-screen w-full lg:grid-cols-[280px_1fr]">
             <Sidebar user={user}/>
@@ -68,7 +71,7 @@ export default function DashboardPage() {
                         <h1 className="font-semibold text-lg md:text-2xl">Links</h1>
                         <CreateLinkInputForm onNewLink={handleNewLink} user_id={user.id} />
                     </div>
-                    <LinksTable links={links}/>
+                    <LinksTable onDelete={handleDeleteLink} links={links}/>
                 </main>
             </div>
         </div>

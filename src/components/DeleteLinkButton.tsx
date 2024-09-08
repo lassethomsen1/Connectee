@@ -8,23 +8,33 @@ import {
     AlertDialogHeader,
     AlertDialogTitle,
     AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
-import {Button} from "./ui/button.tsx";
-import {supabase} from "../supabase.ts";
-import {useState} from "react";
+} from "@/components/ui/alert-dialog";
+import { Button } from "./ui/button.tsx";
+import { supabase } from "../supabase.ts";
+import { useState } from "react";
 
+interface DeleteLinkButtonProps {
+    id: number;
+    onDelete: (id: number) => void;
+}
 
-export default function DeleteLinkButton( {id}: {id: string}) {
+export default function DeleteLinkButton({ id, onDelete }: DeleteLinkButtonProps) {
     const [open, setOpen] = useState(false);
+
     async function handleDelete() {
-        const {error} = await supabase
+        const { error } = await supabase
             .from("url")
             .delete()
             .eq("id", id);
+
         if (error) {
             console.error("Error deleting link:", error.message);
+        } else {
+            onDelete(id); // Call the onDelete function with the id
         }
+        setOpen(false); // Close the dialog
     }
+
     return (
         <AlertDialog open={open} onOpenChange={setOpen}>
             <AlertDialogTrigger asChild>
@@ -39,11 +49,14 @@ export default function DeleteLinkButton( {id}: {id: string}) {
                 </AlertDialogHeader>
                 <AlertDialogFooter>
                     <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction onClick={handleDelete} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
+                    <AlertDialogAction
+                        onClick={handleDelete}
+                        className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                    >
                         Confirm
                     </AlertDialogAction>
                 </AlertDialogFooter>
             </AlertDialogContent>
         </AlertDialog>
-    )
+    );
 }

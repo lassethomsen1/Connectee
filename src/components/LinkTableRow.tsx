@@ -1,13 +1,17 @@
 import {TableCell, TableRow } from "./ui/table";
 import {Button} from "./ui/button.tsx";
 import DeleteLinkButton from "./DeleteLinkButton.tsx";
-type LinkTableRowProps = {
+
+interface LinkTableRowProps {
+    id: number;
     imgUrl: string;
     url: string;
     handle: string;
+    onDelete: (id: number) => void;
 }
 
-export default function LinkTableRow({id, imgUrl, url, handle}: LinkTableRowProps) {
+export default function LinkTableRow({id, imgUrl, url, handle, onDelete}: LinkTableRowProps) {
+
     return (
         <TableRow>
             <TableCell>
@@ -31,7 +35,7 @@ export default function LinkTableRow({id, imgUrl, url, handle}: LinkTableRowProp
                     <Button variant="outline" size="sm">
                         Edit
                     </Button>
-                    <DeleteLinkButton id={id}/>
+                    <DeleteLinkButton id={id} onDelete={onDelete}/>
                 </div>
             </TableCell>
         </TableRow>
