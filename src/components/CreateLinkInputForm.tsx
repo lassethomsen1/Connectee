@@ -21,6 +21,7 @@ import {useState} from "react"
 import {supabase} from "../supabase.ts";
 
 export default function CreateLinkInputForm({user_id}: string) {
+    const [open, setOpen] = useState(false);
     const [formData, setFormData] = useState({
         url: "",
         handle: "",
@@ -46,11 +47,13 @@ export default function CreateLinkInputForm({user_id}: string) {
             }]);
         if (error) {
             console.error("Error creating link:", error.message);
+        } else {
+            setOpen(false)
         }
     }
 
     return (
-        <Dialog>
+        <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
                 <Button size="sm" className={"ml-auto"}>Create Link</Button>
             </DialogTrigger>
@@ -84,7 +87,7 @@ export default function CreateLinkInputForm({user_id}: string) {
                     </div>
                     <DialogFooter>
                         <div>
-                            <Button type="button" variant="ghost">Close</Button>
+                            <Button onClick={() => {setOpen(false)}} type="button" variant="ghost">Close</Button>
                         </div>
                         <Button type="submit">Create Link</Button>
                     </DialogFooter>
