@@ -7,7 +7,7 @@ type LinkTableRowProps = {
     handle: string;
 }
 
-export default function LinkTableRow({imgUrl, url, handle}: LinkTableRowProps) {
+export default function LinkTableRow({id, imgUrl, url, handle}: LinkTableRowProps) {
     return (
         <TableRow>
             <TableCell>
@@ -31,7 +31,7 @@ export default function LinkTableRow({imgUrl, url, handle}: LinkTableRowProps) {
                     <Button variant="outline" size="sm">
                         Edit
                     </Button>
-                    <DeleteLinkButton/>
+                    <DeleteLinkButton id={id}/>
                 </div>
             </TableCell>
         </TableRow>

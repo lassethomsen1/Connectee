@@ -45,6 +45,7 @@ export function LinksTable({ user }: LinkTableProps) {
                     {links.map((link) => (
                         <LinkTableRow
                             key={link.id}
+                            id={link.id}
                             imgUrl={link.img_url}
                             url={link.url}
                             handle={link.handle}
