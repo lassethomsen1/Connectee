@@ -1,5 +1,6 @@
 import {TableCell, TableRow } from "./ui/table";
 import {Button} from "./ui/button.tsx";
+import DeleteLinkButton from "./DeleteLinkButton.tsx";
 type LinkTableRowProps = {
     imgUrl: string;
     url: string;
@@ -30,9 +31,7 @@ export default function LinkTableRow({imgUrl, url, handle}: LinkTableRowProps) {
                     <Button variant="outline" size="sm">
                         Edit
                     </Button>
-                    <Button variant="destructive" size="sm">
-                        Delete
-                    </Button>
+                    <DeleteLinkButton/>
                 </div>
             </TableCell>
         </TableRow>
