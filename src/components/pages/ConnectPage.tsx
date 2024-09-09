@@ -55,7 +55,7 @@ export default function ConnectPage() {
     }, [userid]);
 
     return (
-        <div className={"absolute bg-cover h-screen w-screen"} style={{backgroundImage: `url(${settings?.bg_url})`}}>
+        <div className={"absolute bg-center bg-cover h-screen w-screen"} style={{backgroundImage: `url(${settings?.bg_url})`}}>
             <Title title={settings?.title}></Title>
             <div className={"flex flex-col items-center"}>
                 {links.map((link: link) => (
