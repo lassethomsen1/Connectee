@@ -24,7 +24,7 @@ import {Label} from "@/components/ui/label";
 import {LinkIcon, SearchIcon} from "./Icons";
 import {Link, useNavigate} from "react-router-dom";
 import {supabase} from "../supabase.ts";
-import CopyConnectPageButton from "../CopyConnectPageButton.tsx";
+import CopyConnectPageButton from "./CopyConnectPageButton.tsx";
 import {useState} from "react";
 
 export function Header({userid}: { userid: string }) {
