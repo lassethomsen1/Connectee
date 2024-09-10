@@ -9,9 +9,10 @@ import {supabase} from "../supabase.ts";
 interface LinkTableProps {
     links: any[];
     onDelete: (id: number) => void;
+    onEdit: (id: number) => void;
 }
 
-export function LinksTable({links, onDelete}: LinkTableProps) {
+export function LinksTable({links, onDelete, onEdit}: LinkTableProps) {
 
     return (
         <div className="border shadow-sm rounded-lg">
@@ -36,6 +37,7 @@ export function LinksTable({links, onDelete}: LinkTableProps) {
                             url={link.url}
                             handle={link.handle}
                             onDelete={onDelete}
+                            onEdit={onEdit}
                         />
                     ))}
                 </TableBody>

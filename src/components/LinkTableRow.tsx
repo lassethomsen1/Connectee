@@ -36,6 +36,7 @@ export default function LinkTableRow({id, imgUrl, url, handle, onDelete}: LinkTa
                         Edit
                     </Button>
                     <DeleteLinkButton id={id} onDelete={onDelete}/>
+                    <EditLinkButton id{id} onEdit={onEdit}/>
                 </div>
             </TableCell>
         </TableRow>
