@@ -96,7 +96,7 @@ export default function CreateLinkInputForm({ user_id, onNewLink }) {
                             <Input
                                 required
                                 id="image-url"
-                                name="imageUrl"
+                                name="img_url"
                                 onChange={handleChange}
                                 value={formData.img_url}
                                 placeholder="example.com/image.jpg"
