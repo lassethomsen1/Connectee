@@ -5,9 +5,15 @@ import LinkTableRow from "./LinkTableRow.tsx";
 import {useEffect, useState} from "react";
 import {supabase} from "../supabase.ts";
 
-//todo fix de her types
+
+interface Link {
+    id: number;
+    img_url: string;
+    url: string;
+    handle: string;
+}
 interface LinkTableProps {
-    links: any[];
+    links: Link[];
     onDelete: (id: number) => void;
     onEdit: (id: number) => void;
 }
@@ -33,7 +39,7 @@ export function LinksTable({links, onDelete, onEdit}: LinkTableProps) {
                         <LinkTableRow
                             key={link.id}
                             id={link.id}
-                            imgUrl={link.img_url}
+                            img_url={link.img_url}
                             url={link.url}
                             handle={link.handle}
                             onDelete={onDelete}

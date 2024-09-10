@@ -61,6 +61,17 @@ export default function DashboardPage() {
     const handleDeleteLink = (deletedId: number) => {
         setLinks((prevLinks) => prevLinks.filter(link => link.id !== deletedId));
     };
+
+    const handleEditLink = (updatedLink) => {
+        if (!updatedLink || !updatedLink.id) {
+            console.error("Invalid updated link data:", updatedLink);
+            return;
+        }
+
+        setLinks((prevLinks) =>
+            prevLinks.map((link) => (link.id === updatedLink.id ? updatedLink : link))
+        );
+    };
     return (
         <div className="grid min-h-screen w-full lg:grid-cols-[280px_1fr]">
             <Sidebar user={user}/>
@@ -71,7 +82,7 @@ export default function DashboardPage() {
                         <h1 className="font-semibold text-lg md:text-2xl">Links</h1>
                         <CreateLinkInputForm onNewLink={handleNewLink} user_id={user.id} />
                     </div>
-                    <LinksTable onDelete={handleDeleteLink} links={links}/>
+                    <LinksTable onDelete={handleDeleteLink} onEdit={handleEditLink} links={links}/>
                 </main>
             </div>
         </div>

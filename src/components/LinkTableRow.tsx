@@ -1,16 +1,17 @@
 import {TableCell, TableRow } from "./ui/table";
-import {Button} from "./ui/button.tsx";
 import DeleteLinkButton from "./DeleteLinkButton.tsx";
+import EditLinkButton from "./EditLinkButton.tsx";
 
 interface LinkTableRowProps {
     id: number;
-    imgUrl: string;
+    img_url: string;
     url: string;
     handle: string;
     onDelete: (id: number) => void;
+    onEdit: (id: number) => void;
 }
 
-export default function LinkTableRow({id, imgUrl, url, handle, onDelete}: LinkTableRowProps) {
+export default function LinkTableRow({id, img_url, url, handle, onDelete, onEdit}: LinkTableRowProps) {
 
     return (
         <TableRow>
@@ -22,7 +23,7 @@ export default function LinkTableRow({id, imgUrl, url, handle, onDelete}: LinkTa
             <TableCell>{"@" + handle}</TableCell>
             <TableCell>
                 <img
-                    src={imgUrl}
+                    src={img_url}
                     width="32"
                     height="32"
                     alt="Icon"
@@ -32,11 +33,8 @@ export default function LinkTableRow({id, imgUrl, url, handle, onDelete}: LinkTa
             </TableCell>
             <TableCell>
                 <div className="flex items-center gap-2">
-                    <Button variant="outline" size="sm">
-                        Edit
-                    </Button>
+                    <EditLinkButton id={id} onEdit={onEdit}/>
                     <DeleteLinkButton id={id} onDelete={onDelete}/>
-                    <EditLinkButton id{id} onEdit={onEdit}/>
                 </div>
             </TableCell>
         </TableRow>

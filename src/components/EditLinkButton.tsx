@@ -7,22 +7,47 @@ import {
     DialogDescription,
     DialogFooter
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { useState } from "react";
-import { supabase } from "../supabase.ts";
+import {Button} from "@/components/ui/button";
+import {Label} from "@/components/ui/label";
+import {Input} from "@/components/ui/input";
+import {useEffect, useState} from "react";
+import {supabase} from "../supabase.ts";
 
 export default function EditLinkButton({id, onEdit}: { id: number, onEdit: (id: number) => void }) {
     const [open, setOpen] = useState(false);
     const [formData, setFormData] = useState({
         url: "",
         handle: "",
-        imageUrl: "",
+        img_url: "",
     });
 
+    useEffect(() => {
+        async function fetchLink() {
+            if (open) {
+                const {data, error} = await supabase
+                    .from("url")
+                    .select("*")
+                    .eq("id", id)
+                    .single();
+
+                if (error) {
+                    console.error("Error fetching link:", error.message);
+                } else {
+                    // Populate form with existing data
+                    setFormData({
+                        url: data.url || "",
+                        handle: data.handle || "",
+                        img_url: data.img_url || "",
+                    });
+                }
+            }
+        }
+
+        fetchLink();
+    }, [open, id]);
+
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        const {name, value} = e.target;
         setFormData({
             ...formData,
             [name]: value,
@@ -30,12 +55,15 @@ export default function EditLinkButton({id, onEdit}: { id: number, onEdit: (id: 
     };
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        console.log("Submitting form with data:", formData);
+
         const { data, error } = await supabase
             .from("url")
             .update({
                 url: formData.url,
                 handle: formData.handle,
-                img_url: formData.imageUrl,
+                img_url: formData.img_url,
             })
             .eq("id", id)
             .select("*");
@@ -43,15 +71,22 @@ export default function EditLinkButton({id, onEdit}: { id: number, onEdit: (id: 
         if (error) {
             console.error("Error updating link:", error.message);
         } else {
-            onEdit(data[0]); // muligvis fejl her
-            setOpen(false);
+            console.log("Update response data:", data);
+            if (data.length > 0) {
+                onEdit(data[0]);
+                setOpen(false);
+            } else {
+                console.error("No data returned from update");
+            }
         }
-    }
+        setOpen(false)
+    };
+
 
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button size="sm" className="ml-auto">Create Link</Button>
+                <Button variant="outline" size="sm">Edit</Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
@@ -65,6 +100,7 @@ export default function EditLinkButton({id, onEdit}: { id: number, onEdit: (id: 
                                 URL
                             </Label>
                             <Input
+                                required
                                 id="url"
                                 name="url"
                                 onChange={handleChange}
@@ -78,6 +114,7 @@ export default function EditLinkButton({id, onEdit}: { id: number, onEdit: (id: 
                                 Handle
                             </Label>
                             <Input
+                                required
                                 id="handle"
                                 name="handle"
                                 onChange={handleChange}
@@ -91,10 +128,11 @@ export default function EditLinkButton({id, onEdit}: { id: number, onEdit: (id: 
                                 Image URL
                             </Label>
                             <Input
+                                required
                                 id="image-url"
                                 name="imageUrl"
                                 onChange={handleChange}
-                                value={formData.imageUrl}
+                                value={formData.img_url}
                                 placeholder="example.com/image.jpg"
                                 className="col-span-3"
                             />
