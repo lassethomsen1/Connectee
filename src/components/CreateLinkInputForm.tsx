@@ -18,7 +18,7 @@ export default function CreateLinkInputForm({ user_id, onNewLink }) {
     const [formData, setFormData] = useState({
         url: "",
         handle: "",
-        imageUrl: "",
+        img_url: "",
     });
 
     const handleChange = (e) => {
@@ -37,7 +37,7 @@ export default function CreateLinkInputForm({ user_id, onNewLink }) {
                 user_id: user_id,
                 url: formData.url,
                 handle: formData.handle,
-                img_url: formData.imageUrl,
+                img_url: formData.img_url,
             }])
             .select("*"); // for fetching the newly created link
 
@@ -98,7 +98,7 @@ export default function CreateLinkInputForm({ user_id, onNewLink }) {
                                 id="image-url"
                                 name="imageUrl"
                                 onChange={handleChange}
-                                value={formData.imageUrl}
+                                value={formData.img_url}
                                 placeholder="example.com/image.jpg"
                                 className="col-span-3"
                             />
