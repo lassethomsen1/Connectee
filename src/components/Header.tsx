@@ -25,8 +25,8 @@ import {LinkIcon, SearchIcon} from "./Icons";
 import {Link, useNavigate} from "react-router-dom";
 import {supabase} from "../supabase.ts";
 import CopyConnectPageButton from "./CopyConnectPageButton.tsx";
-import {useState} from "react";
-
+import {useEffect, useState} from "react";
+//TODO FIX DE HER TYPER
 export function Header({userid}: { userid: string }) {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
@@ -57,10 +57,64 @@ export function Header({userid}: { userid: string }) {
 function UserMenu({userid}: { userid: string }) {
     const navigate = useNavigate();
     const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+    const [formData, setFormData] = useState({
+        title: "",
+        bg_url: "",
+    });
+
+    useEffect(() => {
+        async function fetchSettings() {
+            if (isSettingsOpen) {
+                const {data, error} = await supabase
+                    .from("connectpages")
+                    .select("title, bg_url")
+                    .eq("user_id", userid);
+
+                if (error) {
+                    console.error("Error fetching connectpage settings:", error.message);
+                } else {
+                    if (data && data.length > 0) {
+                        setFormData({
+                            title: data[0].title || "",
+                            bg_url: data[0].bg_url || "",
+                        });
+                    }
+                }
+            }
+        }
+
+        fetchSettings();
+    }, [userid, isSettingsOpen]);
 
     const handleSignOut = async () => {
         await supabase.auth.signOut();
         navigate("/login");
+    }
+    const handleChange = (e) => {
+        const {name, value} = e.target;
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const {data, error} = await supabase
+            .from("connectpages")
+            .update({
+                title: formData.title,
+                bg_url: formData.bg_url,
+            })
+            .eq("user_id", userid)
+            .select("*");
+
+        if (error) {
+            console.error("Error updating connectpage:", error.message);
+        } else if (data && data.length > 0) {
+            setFormData(data[0]);
+        }
     }
 
     const handleSettings = () => {
@@ -99,28 +153,31 @@ function UserMenu({userid}: { userid: string }) {
                     <SheetHeader>
                         <SheetTitle>Edit your ConnectPage</SheetTitle>
                         <SheetDescription>
-                            Here you can edit your ConnectPage settings. Make sure to save your changes before closing this.
+                            Here you can edit your ConnectPage settings. Make sure to save your changes before closing
+                            this.
                         </SheetDescription>
                     </SheetHeader>
-                    <div className="grid gap-4 py-4">
-                        <div className="grid grid-cols-4 items-center gap-4">
-                            <Label htmlFor="title" className="text-left">
-                                Title
-                            </Label>
-                            <Input id="title" placeholder="Your name maybe ¯\_(ツ)_/¯ " className="col-span-3"/>
+                    <form onSubmit={handleSubmit}>
+                        <div className="grid gap-4 py-4">
+                            <div className="grid grid-cols-4 items-center gap-4">
+                                <Label htmlFor="title" className="text-left">
+                                    Title
+                                </Label>
+                                <Input onChange={handleChange} id="title" name="title" value={formData.title || ""} placeholder={formData.title} className="col-span-3"/>
+                            </div>
+                            <div className="grid grid-cols-4 items-center gap-4">
+                                <Label htmlFor="bg_url" className="text-left">
+                                    Background image URL
+                                </Label>
+                                <Input onChange={handleChange} id="bg_url" name="bg_url" value={formData.bg_url || ""} placeholder={formData.bg_url} className="col-span-3"/>
+                            </div>
                         </div>
-                        <div className="grid grid-cols-4 items-center gap-4">
-                            <Label htmlFor="bg-url" className="text-left">
-                                Background image URL
-                            </Label>
-                            <Input id="bg-url" placeholder="https://example.com" className="col-span-3"/>
-                        </div>
-                    </div>
-                    <SheetFooter>
-                        <SheetClose asChild>
-                            <Button type="submit">Save changes</Button>
-                        </SheetClose>
-                    </SheetFooter>
+                        <SheetFooter>
+                            <SheetClose asChild>
+                                <Button type="submit">Save changes</Button>
+                            </SheetClose>
+                        </SheetFooter>
+                    </form>
                 </SheetContent>
             </Sheet>
         </>
