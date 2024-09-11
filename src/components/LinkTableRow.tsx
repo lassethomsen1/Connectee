@@ -16,7 +16,7 @@ export default function LinkTableRow({id, img_url, url, handle, onDelete, onEdit
     return (
         <TableRow>
             <TableCell>
-                <a href={"https://" + url} className="font-medium text-primary hover:underline">
+                <a href={url} className="font-medium text-primary hover:underline">
                     {url}
                 </a>
             </TableCell>

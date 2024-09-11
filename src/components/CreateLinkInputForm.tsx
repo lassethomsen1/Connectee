@@ -31,6 +31,8 @@ export default function CreateLinkInputForm({ user_id, onNewLink }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        formData.url = ensureUrlFormat(formData.url);
+        formData.img_url = ensureUrlFormat(formData.img_url);
         const { data, error } = await supabase
             .from("url")
             .insert([{
@@ -112,4 +114,19 @@ export default function CreateLinkInputForm({ user_id, onNewLink }) {
             </DialogContent>
         </Dialog>
     );
+}
+
+function ensureUrlFormat(url: string){
+    let formattedUrl = url.trim();
+
+    if (!formattedUrl.startsWith("http://") && !formattedUrl.startsWith("https://")) {
+        formattedUrl = "https://" + formattedUrl;
+    }
+
+    if (!formattedUrl.includes("www.")) {
+        const parts = formattedUrl.split("//");
+        formattedUrl = parts[0] + "//www." + parts[1];
+    }
+
+    return formattedUrl;
 }
