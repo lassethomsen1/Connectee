@@ -1,7 +1,7 @@
 # todo
 
 - find ud af om bruger skal kunne uploade sit eget baggrundsbillede eller brugeren skal finde url'en til billedet
-- lav landing page
+- lav landing page https://v0.dev/r/sVCfZc9fMof
 - lav backend til settings i header -- det ville sige create/edit af connectpage
 - funktionalitet til at oprette connectpage via dashboard <mark>husk den skal create connectpages row</mark>
 - gør så når en bruger bliver oprettet bliver connectpages row også oprettet
