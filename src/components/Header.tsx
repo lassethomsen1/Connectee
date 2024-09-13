@@ -85,7 +85,7 @@ function UserMenu({userid}: { userid: string }) {
 
         fetchSettings();
     }, [userid, isSettingsOpen]);
-
+    //TODO find ud af hvordan man skal set user = null
     const handleSignOut = async () => {
         await supabase.auth.signOut();
         navigate("/login");
