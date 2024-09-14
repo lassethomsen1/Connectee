@@ -5,6 +5,8 @@
  */
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
+import {cn} from "../../lib/utils.ts";
+import AnimatedGridPattern from "../magicui/animated-grid-pattern.tsx";
 
 export default function LandingPage() {
     return (
@@ -27,7 +29,7 @@ export default function LandingPage() {
                 </nav>
             </header>
             <main className="flex-1">
-                <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
+                <section className="relative w-full py-12 md:py-24 lg:py-32 xl:py-48">
                     <div className="container mx-auto max-w-7xl px-4 md:px-6">
                         <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
                             <div className="flex flex-col justify-center space-y-4">
@@ -57,6 +59,16 @@ export default function LandingPage() {
                                 height="550"
                             />
                         </div>
+                        <AnimatedGridPattern
+                            numSquares={30}
+                            maxOpacity={0.1}
+                            duration={3}
+                            repeatDelay={1}
+                            className={cn(
+                                "[mask-image:radial-gradient(1000px_circle_at_center,white,transparent)]",
+                                "absolute inset-0 -z-10  h-[100%] skew-y-12 ",
+                            )}
+                        />
                     </div>
                 </section>
                 <section className="w-full py-12 md:py-24 lg:py-32 bg-muted">
