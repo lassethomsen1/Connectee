@@ -38,6 +38,8 @@ export default function DashboardPage() {
                 } else {
                     setLinks(data);
                 }
+            } else{
+                navigate("/login");
             }
         }
 
