@@ -14,7 +14,7 @@ export default function LandingPage() {
             <header className="px-4 lg:px-6 h-14 flex items-center">
                 <a href="#" className="flex items-center justify-center">
                     <LinkIcon className="h-6 w-6" />
-                    <span className="sr-only">Linktree Alternative</span>
+                    <span className="sr-only">Connectee</span>
                 </a>
                 <nav className="ml-auto flex gap-4 sm:gap-6">
                     <a href="#" className="text-sm font-medium hover:underline underline-offset-4" >
