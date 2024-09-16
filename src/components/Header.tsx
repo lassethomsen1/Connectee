@@ -18,7 +18,6 @@ import {
     SheetFooter,
     SheetHeader,
     SheetTitle,
-    SheetTrigger,
 } from "@/components/ui/sheet"
 import {Label} from "@/components/ui/label";
 import {LinkIcon, SearchIcon} from "./Icons";
@@ -26,14 +25,11 @@ import {Link, useNavigate} from "react-router-dom";
 import {supabase} from "../supabase.ts";
 import CopyConnectPageButton from "./CopyConnectPageButton.tsx";
 import {useEffect, useState} from "react";
-//TODO FIX DE HER TYPER
 export function Header({userid}: { userid: string }) {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
 
     return (
         <header className="flex h-14 lg:h-[60px] items-center gap-4 border-b bg-muted/40 px-6">
-            <Link to="#" className="lg:hidden" prefetch={false}>
+            <Link to="/" className="lg:hidden" prefetch={false}>
                 <LinkIcon className="h-6 w-6"/>
                 <span className="sr-only">Home</span>
             </Link>
@@ -119,9 +115,6 @@ function UserMenu({userid}: { userid: string }) {
 
     const handleSettings = () => {
         setIsSettingsOpen(true);
-    }
-    const handleCloseSettings = () => {
-        setIsSettingsOpen(false);
     }
     return (
         <>
