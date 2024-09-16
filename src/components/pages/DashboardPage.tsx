@@ -1,11 +1,9 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-//@ts-nocheck
 import { Sidebar } from "@/components/Sidebar";
 import { Header } from "@/components/Header";
 import { LinksTable } from "@/components/LinksTable";
-import {useEffect, useState} from "react";
-import {supabase} from "../../supabase.ts";
-import {useNavigate} from "react-router-dom";
+import { useEffect, useState } from "react";
+import { supabase } from "../../supabase.ts";
+import { useNavigate } from "react-router-dom";
 import CreateLinkInputForm from "../CreateLinkInputForm.tsx";
 
 export default function DashboardPage() {
@@ -16,17 +14,22 @@ export default function DashboardPage() {
 
     useEffect(() => {
         async function getUserSession() {
-            const { data: { session }} = await supabase.auth.getSession();
-            setUser(session?.user ?? null);
-            setLoading(false);
+            const { data: { session }, error } = await supabase.auth.getSession();
+
+            if (error || !session?.user) {
+                navigate("/login"); // Redirect to login if no session is found
+            } else {
+                setUser(session.user); // Set user from the session
+            }
+            setLoading(false); // Mark loading as false whether the user is found or not
         }
 
-        getUserSession(); // Only fetch user session here
-    }, []); // Empty dependency array, runs only once when the component mounts
+        getUserSession(); // Fetch user session when the component mounts
+    }, [navigate]); // Only runs once when the component mounts
 
     useEffect(() => {
         async function fetchLinks() {
-            if (user?.id) { // Check if user.id is available
+            if (user?.id) {
                 const { data, error } = await supabase
                     .from("url")
                     .select("*")
@@ -34,31 +37,18 @@ export default function DashboardPage() {
 
                 if (error) {
                     console.error("Error fetching links:", error.message);
-                    return;
                 } else {
                     setLinks(data);
                 }
-            } else{
-                navigate("/login");
             }
         }
 
-        fetchLinks(); // Fetch links once user.id is available
-    }, [user]); // Depend on `user`, run this effect whenever `user` changes
+        fetchLinks(); // Fetch links whenever the `user` is updated
+    }, [user]); // Runs whenever the user state changes
 
-
-    useEffect(() => {
-        if (!loading && !user) {
-            navigate("/login");
-        }
-    }, [loading, user, navigate]);
-
-    if (loading) {
-        return <div>Loading...</div>;
-    }
     const handleNewLink = async (newLink) => {
         setLinks([...links, newLink]);
-    }
+    };
 
     const handleDeleteLink = (deletedId: number) => {
         setLinks((prevLinks) => prevLinks.filter(link => link.id !== deletedId));
@@ -74,9 +64,14 @@ export default function DashboardPage() {
             prevLinks.map((link) => (link.id === updatedLink.id ? updatedLink : link))
         );
     };
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
     return (
         <div className="grid min-h-screen w-full lg:grid-cols-[280px_1fr]">
-            <Sidebar user={user}/>
+            <Sidebar user={user} />
             <div className="flex flex-col">
                 <Header userid={user.id} />
                 <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-6">
@@ -84,7 +79,7 @@ export default function DashboardPage() {
                         <h1 className="font-semibold text-lg md:text-2xl">Links</h1>
                         <CreateLinkInputForm onNewLink={handleNewLink} user_id={user.id} />
                     </div>
-                    <LinksTable onDelete={handleDeleteLink} onEdit={handleEditLink} links={links}/>
+                    <LinksTable onDelete={handleDeleteLink} onEdit={handleEditLink} links={links} />
                 </main>
             </div>
         </div>

@@ -9,27 +9,33 @@ import { supabase } from '../../supabase';
 export default function LoginPage() {
     const navigate = useNavigate();
     const [user, setUser] = useState<any>(null); // Initialize user state correctly
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        // Check if the user is already logged in
         async function checkUser() {
-            const { data: { user }, error } = await supabase.auth.getUser();
+            const { data: { session }, error } = await supabase.auth.getSession();
             if (error) {
-                console.error('Error fetching user:', error.message);
+                console.error('Error fetching session:', error.message);
+                setLoading(false);
                 return;
             }
-            setUser(user);
 
-            if (user) {
-                navigate('/dashboard');
+            if (session?.user) {
+                // If user is logged in, redirect to dashboard
+                setUser(session.user);
+                navigate('/dashboard'); // No need for user ID in URL
             }
+
+            setLoading(false);
         }
 
         checkUser();
     }, [navigate]);
 
     async function signInWithGithub() {
-
         const redirectUrl = import.meta.env.VITE_BASE_URL + '/dashboard';
+        //const redirectUrl = import.meta.env.VITE_CALLBACK_URL;
         const { error } = await supabase.auth.signInWithOAuth({
             provider: 'github',
             options: {
@@ -43,8 +49,13 @@ export default function LoginPage() {
     }
 
     async function signOut() {
-        await supabase.auth.signOut();
-        setUser(null);
+        const { error } = await supabase.auth.signOut();
+        if (!error) {
+            setUser(null); // Clear user state after sign-out
+            navigate('/login'); // Optionally redirect to login page
+        } else {
+            console.error('Error during sign out:', error.message);
+        }
     }
 
     return (
