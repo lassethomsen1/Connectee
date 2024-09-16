@@ -26,6 +26,9 @@ export default function LandingPage() {
                     <a href="#" className="text-sm font-medium hover:underline underline-offset-4" >
                         Contact
                     </a>
+                    <a href="/login" className="text-sm font-medium hover:underline underline-offset-4" >
+                        Login
+                    </a>
                 </nav>
             </header>
             <main className="flex-1">
@@ -44,7 +47,7 @@ export default function LandingPage() {
                                 </div>
                                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
                                     <a
-                                        href="#"
+                                        href="/signup"
                                         className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
                                     >
                                         Sign Up for Free
@@ -111,7 +114,7 @@ export default function LandingPage() {
                             <div className="space-y-2">
                                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">What Our Users Say</h2>
                                 <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                                    Hear from real people who love using our Linktree alternative.
+                                    Hear from real people who love using Connectee.
                                 </p>
                             </div>
                             <div className="grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-3 mx-auto">
@@ -121,8 +124,8 @@ export default function LandingPage() {
                                     </CardHeader>
                                     <CardContent>
                                         <p className="text-muted-foreground">
-                                            "This Linktree alternative has been a game-changer for\n me. It's so easy to manage all my links
-                                            in one place and\n customize the look to match my brand."
+                                            "Connectee has been a game-changer for me. It's so easy to manage all my links
+                                            in one place and customize the look to match my brand."
                                         </p>
                                     </CardContent>
                                     <CardFooter>
@@ -191,12 +194,12 @@ export default function LandingPage() {
                 </section>
             </main>
             <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
-                <p className="text-xs text-muted-foreground">&copy; 2024 Linktree Alternative. All rights reserved.</p>
+                <p className="text-xs text-muted-foreground">&copy; 2024 Connectee All rights reserved.</p>
                 <nav className="sm:ml-auto flex gap-4 sm:gap-6">
-                    <a href="#" className="text-xs hover:underline underline-offset-4" prefetch={false}>
+                    <a href="#" className="text-xs hover:underline underline-offset-4" >
                         Terms of Service
                     </a>
-                    <a href="#" className="text-xs hover:underline underline-offset-4" prefetch={false}>
+                    <a href="#" className="text-xs hover:underline underline-offset-4" >
                         Privacy
                     </a>
                 </nav>
