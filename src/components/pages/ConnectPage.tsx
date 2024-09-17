@@ -66,7 +66,7 @@ export default function ConnectPage() {
                         <img src="https://placehold.co/128x128" alt="Profile" className="w-full h-full object-cover"/>
                     </div>
                     <div className="text-center space-y-1">
-                        <h1 className="text-3xl font-bold">John Doe</h1>
+                        <h1 className="text-3xl font-bold">{settings?.title}</h1>
                         <p className="text-gray-300">Software Engineer</p>
                     </div>
                     <div className="w-full space-y-4">
