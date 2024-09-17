@@ -25,6 +25,8 @@ import {Link, useNavigate} from "react-router-dom";
 import {supabase} from "../supabase.ts";
 import CopyConnectPageButton from "./CopyConnectPageButton.tsx";
 import {useEffect, useState} from "react";
+import {Select, SelectContent, SelectItem, SelectTrigger} from "./ui/select.tsx";
+
 export function Header({userid}: { userid: string }) {
 
     return (
@@ -156,13 +158,28 @@ function UserMenu({userid}: { userid: string }) {
                                 <Label htmlFor="title" className="text-left">
                                     Title
                                 </Label>
-                                <Input onChange={handleChange} id="title" name="title" value={formData.title || ""} placeholder={formData.title} className="col-span-3"/>
+                                <Input onChange={handleChange} id="title" name="title" value={formData.title || ""}
+                                       placeholder={formData.title} className="col-span-3"/>
                             </div>
                             <div className="grid grid-cols-4 items-center gap-4">
                                 <Label htmlFor="bg_url" className="text-left">
                                     Background image URL
                                 </Label>
-                                <Input onChange={handleChange} id="bg_url" name="bg_url" value={formData.bg_url || ""} placeholder={formData.bg_url} className="col-span-3"/>
+                                <Input onChange={handleChange} id="bg_url" name="bg_url" value={formData.bg_url || ""}
+                                       placeholder={formData.bg_url} className="col-span-3"/>
+                            </div>
+                            <div className="grid grid-cols-4 items-center gap-4">
+                                <Label htmlFor="theme" className="text-left">
+                                    Theme:
+                                </Label>
+                                <Select>
+                                    <SelectTrigger className={"col-span-3"}>pick a theme</SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value={"light"}>Light</SelectItem>
+                                        <SelectItem value={"dark"}>Dark</SelectItem>
+                                        <SelectItem value={"coffee"}>Coffee</SelectItem>
+                                    </SelectContent>
+                                </Select>
                             </div>
                         </div>
                         <SheetFooter>
