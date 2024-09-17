@@ -71,7 +71,7 @@ export default function DashboardPage() {
 
     return (
         <div className="grid min-h-screen w-full lg:grid-cols-[280px_1fr]">
-            <Sidebar user={user} />
+            <Sidebar userid={user.id} />
             <div className="flex flex-col">
                 <Header userid={user.id} />
                 <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-6">
