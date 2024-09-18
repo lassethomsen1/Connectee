@@ -5,6 +5,7 @@ import { SVGProps, useEffect, useState } from 'react';
 import { JSX } from 'react/jsx-runtime';
 import { LinkIcon } from '@/components/Icons';
 import { supabase } from '../../supabase';
+//burde nok være i en fil for sig selv
 interface user{
     id: string
 }
