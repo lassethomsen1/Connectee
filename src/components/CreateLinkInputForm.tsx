@@ -12,6 +12,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { supabase } from "../supabase.ts";
+import {ensureUrlFormat} from "../lib/utils.ts";
 
 export default function CreateLinkInputForm({ user_id, onNewLink }) {
     const [open, setOpen] = useState(false);
@@ -116,17 +117,4 @@ export default function CreateLinkInputForm({ user_id, onNewLink }) {
     );
 }
 
-function ensureUrlFormat(url: string){
-    let formattedUrl = url.trim();
 
-    if (!formattedUrl.startsWith("http://") && !formattedUrl.startsWith("https://")) {
-        formattedUrl = "https://" + formattedUrl;
-    }
-
-    if (!formattedUrl.includes("www.")) {
-        const parts = formattedUrl.split("//");
-        formattedUrl = parts[0] + "//www." + parts[1];
-    }
-
-    return formattedUrl;
-}
