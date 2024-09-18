@@ -37,6 +37,7 @@ export default function CopyConnectPageButton({userid}: { userid: string }) {
                             id="link"
                             defaultValue={url}
                             readOnly
+                            className={"select-all"}
                         />
                     </div>
                     <Button type="submit" size="sm" className="px-3"
