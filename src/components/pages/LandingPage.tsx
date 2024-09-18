@@ -68,8 +68,8 @@ export default function LandingPage() {
                             duration={3}
                             repeatDelay={1}
                             className={cn(
-                                "[mask-image:radial-gradient(1000px_circle_at_center,white,transparent)]",
-                                "absolute inset-0 -z-10  h-[100%] skew-y-12 ",
+                                "[mask-image:radial-gradient(400px_circle_at_center,white,transparent)]",
+                                "absolute inset-0 -z-10 h-[100%] skew-y-12",
                             )}
                         />
                     </div>
