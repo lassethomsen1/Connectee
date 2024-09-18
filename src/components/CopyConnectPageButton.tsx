@@ -42,8 +42,7 @@ export default function CopyConnectPageButton({userid}: { userid: string }) {
                     </div>
                     <Button type="submit" size="sm" className="px-3"
                     onClick={() =>{
-                        navigator.clipboard.writeText(url);
-                        console.log("Copied to clipboard: ", url);
+                        navigator.clipboard.writeText(url).then(() => console.log("Copied to clipboard: ", url));
                     }}>
                         <span className="sr-only">Copy</span>
                         <Copy className="h-4 w-4"/>
