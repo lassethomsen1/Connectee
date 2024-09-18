@@ -38,7 +38,7 @@ export default function LandingPage() {
                             <div className="flex flex-col justify-center space-y-4">
                                 <div className="space-y-2">
                                     <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-                                        Simplify Your Online Presence
+                                        <span className={"text-primary"}>Simplify </span>Your Online Presence
                                     </h1>
                                     <p className="max-w-[600px] text-muted-foreground md:text-xl">
                                         Create a beautiful, customizable landing page to showcase all your links in one place. No coding
