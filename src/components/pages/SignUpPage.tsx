@@ -9,6 +9,26 @@ import { Link } from "react-router-dom"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { LinkIcon } from "@/components/Icons"
+import {supabase} from "../../supabase.ts";
+
+// burde nok være i en fil for sig selv
+async function signInWithGithub() {
+    const redirectUrl = import.meta.env.VITE_BASE_URL + '/dashboard';
+    //const redirectUrl = import.meta.env.VITE_CALLBACK_URL;
+    const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'github',
+        options: {
+            redirectTo: redirectUrl,
+            scopes: 'read:user',
+        },
+    });
+
+    if (error) {
+        console.error('Error during GitHub login:', error.message); // Log any errors
+    }
+
+}
+
 
 export default function SignUpPage() {
     return (
@@ -33,7 +53,8 @@ export default function SignUpPage() {
                                 <ChromeIcon className="h-5 w-5" />
                                 Sign up with Google
                             </Button>
-                            <Button variant="outline" className="flex items-center justify-center gap-2">
+                            <Button variant="outline" className="flex items-center justify-center gap-2"
+                                    onClick={signInWithGithub}>
                                 <GitlabIcon className="h-5 w-5" />
                                 Sign up with GitHub
                             </Button>
