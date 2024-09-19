@@ -26,6 +26,7 @@ import {supabase} from "../supabase.ts";
 import CopyConnectPageButton from "./CopyConnectPageButton.tsx";
 import {useEffect, useState} from "react";
 import {Select, SelectContent, SelectItem, SelectTrigger} from "./ui/select.tsx";
+import {ensureUrlFormat} from "../lib/utils.ts";
 
 export function Header({userid}: { userid: string }) {
 
@@ -65,7 +66,7 @@ function UserMenu({userid}: { userid: string }) {
             if (isSettingsOpen) {
                 const {data, error} = await supabase
                     .from("connectpages")
-                    .select("title, bg_url")
+                    .select("title, bg_url, subtitle")
                     .eq("user_id", userid);
 
                 if (error) {
@@ -75,6 +76,7 @@ function UserMenu({userid}: { userid: string }) {
                         setFormData({
                             title: data[0].title || "",
                             bg_url: data[0].bg_url || "",
+                            subtitle: data[0].subtitle || "",
                         });
                     }
                 }
@@ -98,12 +100,14 @@ function UserMenu({userid}: { userid: string }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        formData.bg_url = ensureUrlFormat(formData.bg_url);
 
         const {data, error} = await supabase
             .from("connectpages")
             .update({
                 title: formData.title,
                 bg_url: formData.bg_url,
+                subtitle: formData.subtitle,
             })
             .eq("user_id", userid)
             .select("*");
@@ -160,6 +164,13 @@ function UserMenu({userid}: { userid: string }) {
                                 </Label>
                                 <Input onChange={handleChange} id="title" name="title" value={formData.title || ""}
                                        placeholder={formData.title} className="col-span-3"/>
+                            </div>
+                            <div className="grid grid-cols-4 items-center gap-4">
+                                <Label htmlFor="subtitle" className="text-left">
+                                    Subtitle
+                                </Label>
+                                <Input onChange={handleChange} id="subtitle" name="subtitle" value={formData.subtitle || null}
+                                       placeholder={formData.subtitle} className="col-span-3"/>
                             </div>
                             <div className="grid grid-cols-4 items-center gap-4">
                                 <Label htmlFor="bg_url" className="text-left">
