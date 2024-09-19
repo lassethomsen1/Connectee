@@ -12,6 +12,7 @@ import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
 import {useEffect, useState} from "react";
 import {supabase} from "../supabase.ts";
+import {ensureUrlFormat} from "../lib/utils.ts";
 
 export default function EditLinkButton({id, onEdit}: { id: number, onEdit: (id: number) => void }) {
     const [open, setOpen] = useState(false);
@@ -55,8 +56,8 @@ export default function EditLinkButton({id, onEdit}: { id: number, onEdit: (id: 
     };
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        console.log("Submitting form with data:", formData);
+        formData.url = ensureUrlFormat(formData.url);
+        formData.img_url = ensureUrlFormat(formData.img_url);
 
         const { data, error } = await supabase
             .from("url")
