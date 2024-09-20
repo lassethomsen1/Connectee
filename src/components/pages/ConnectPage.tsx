@@ -1,4 +1,3 @@
-import Title from "../Title.tsx";
 import ConnectPageLink from "../ConnectPageLink.tsx";
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
@@ -14,6 +13,7 @@ interface link {
 interface settings {
     title: string;
     bg_url: string;
+    subtitle: string;
 }
 
 export default function ConnectPage() {
@@ -43,7 +43,7 @@ export default function ConnectPage() {
         async function fetchSettings() {
             const {data, error} = await supabase
                 .from("connectpages")
-                .select("title, bg_url")
+                .select("title, bg_url, subtitle")
                 .eq("user_id", userid)
                 .single();
 
@@ -66,8 +66,8 @@ export default function ConnectPage() {
                         <img src="https://placehold.co/128x128" alt="Profile" className="w-full h-full object-cover"/>
                     </div>
                     <div className="text-center space-y-1">
-                        <h1 className="text-3xl font-bold">John Doe</h1>
-                        <p className="text-gray-300">Software Engineer</p>
+                        <h1 className="text-3xl font-bold">{settings?.title}</h1>
+                        {settings?.subtitle ? <p className="text-gray-300">{settings.subtitle}</p> : null}
                     </div>
                     <div className="w-full space-y-4">
                         {links.map((link: link) => (
