@@ -23,7 +23,7 @@ export default function LandingPage() {
                     <a href="#" className="text-sm font-medium hover:underline underline-offset-4" >
                         About
                     </a>
-                    <a href="#" className="text-sm font-medium hover:underline underline-offset-4" >
+                    <a href="/hub/7afb82ac-8760-4aa4-8bc4-1df90988fb56" className="text-sm font-medium hover:underline underline-offset-4" >
                         Contact
                     </a>
                     <a href="/login" className="text-sm font-medium hover:underline underline-offset-4" >
