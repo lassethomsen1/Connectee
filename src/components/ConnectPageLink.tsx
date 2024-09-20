@@ -1,10 +1,14 @@
 import {Link} from "react-router-dom";
+import {useState} from "react";
 
 type LinkProps = {
     key: number,
     handle: string,
     url: string,
     imgurl: string
+    handleColor: {color: string}
+    linkColor: string
+    onHoverColor: string
 };
 /* det her skal være i supabase
 const icons = {
@@ -17,23 +21,24 @@ const icons = {
     "x": "https://cdn-icons-png.flaticon.com/512/5968/5968958.png"
 }
 */
-export default function ConnectPageLink({imgurl, handle, url}: LinkProps) {
+export default function ConnectPageLink({imgurl, handle, url, handleColor, linkColor, onHoverColor}: LinkProps) {
 
-    //const iconURL = icons[website];
+    const [isHovered, setIsHovered] = useState(false); //det her virker
 
     return (<Link
             to={url}
-            className="flex items-center gap-4 bg-white/10 hover:bg-white/20 transition-colors rounded-lg p-4"
-            prefetch={false}
-        >
+            className="flex items-center gap-4 transition-colors rounded-lg p-4"
+            style={{backgroundColor: isHovered ? onHoverColor : linkColor}}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}>
             <div className="rounded-full p-2">
                 {/*her skal der være icon */}
                 {/*<InstagramIcon className="w-5 h-5 text-primary-foreground" /> */}
                 <img className={"max-w-6 max-h-6 "} src={imgurl} alt={"icon"}/>
             </div>
             <div className="flex-1">
-                <h3 className="font-semibold">Instagram</h3>
-                <p className="text-gray-300 text-sm">{handle}</p>
+                <h3 className="font-semibold" style={handleColor}>Instagram</h3>
+                <p className="text-sm" style={handleColor}>{handle}</p>
             </div>
         </Link>
 
