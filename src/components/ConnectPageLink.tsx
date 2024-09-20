@@ -1,5 +1,6 @@
 import {Link} from "react-router-dom";
 import {useState} from "react";
+import {ensureUrlFormat} from "../lib/utils.ts";
 
 type LinkProps = {
     key: number,
@@ -9,6 +10,7 @@ type LinkProps = {
     handleColor: {color: string}
     linkColor: string
     onHoverColor: string
+    linkTitle: {color: string}
 };
 /* det her skal være i supabase
 const icons = {
@@ -21,10 +23,9 @@ const icons = {
     "x": "https://cdn-icons-png.flaticon.com/512/5968/5968958.png"
 }
 */
-export default function ConnectPageLink({imgurl, handle, url, handleColor, linkColor, onHoverColor}: LinkProps) {
-
+export default function ConnectPageLink({imgurl, handle, url, handleColor,linkTitle, linkColor, onHoverColor,}: LinkProps) {
+    url = ensureUrlFormat(url);
     const [isHovered, setIsHovered] = useState(false); //det her virker
-
     return (<Link
             to={url}
             className="flex items-center gap-4 transition-colors rounded-lg p-4"
@@ -37,8 +38,8 @@ export default function ConnectPageLink({imgurl, handle, url, handleColor, linkC
                 <img className={"max-w-6 max-h-6 "} src={imgurl} alt={"icon"}/>
             </div>
             <div className="flex-1">
-                <h3 className="font-semibold" style={handleColor}>Instagram</h3>
-                <p className="text-sm" style={handleColor}>{handle}</p>
+                <h3 className="font-semibold" style={linkTitle}>Instagram</h3>
+                <p className="text-sm font-bold" style={handleColor}>{handle}</p>
             </div>
         </Link>
 

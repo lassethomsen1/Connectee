@@ -64,8 +64,10 @@ export default function ConnectPage() {
             'primary-content': '#000000',
             'accent': '#c07eec',
             'accent-focus': '#ad55e7',
+            'secondary' : '#1c92f2',
             'secondary-focus': '#5bbedc', // hardcoded hex value
             'neutral-content': '#ffee00',
+            'neutral-focus' : '#090901',
             'base-200': '#d6c800',
             'base-300' : '#b8ab00',
         },
@@ -112,15 +114,16 @@ export default function ConnectPage() {
                         <h1 className="text-3xl font-bold" // her skal man kunne ændre font via edit settings
                             style={{color: themes["cyberpunk"]['primary-content']}}>
                             {settings?.title}</h1>
-                        {settings?.subtitle ? <p className="text-gray-300"
-                                                 style={{color: themes['cyberpunk']['secondary-focus']}}>{settings.subtitle}</p> : null}
+                        {settings?.subtitle ? <p className="text-gray-300 font-semibold"
+                                                 style={{color: themes['cyberpunk']['neutral-focus']}}>{settings.subtitle}</p> : null}
                     </div>
                     <div className="w-full space-y-4">
                         {links.map((link: link) => (
                             <ConnectPageLink key={link.id} handle={link.handle} url={link.url} imgurl={link.img_url}
-                                             handleColor={{color: themes['cyberpunk']["primary-content"]}}
+                                             handleColor={{color: themes['cyberpunk']["secondary"]}}
                                              linkColor={themes['cyberpunk']['base-200']}
-                                             onHoverColor={themes['cyberpunk']['base-300']}/> //husk hover
+                                             linkTitle={{color: themes['cyberpunk']['primary-content']}}
+                                             onHoverColor={themes['cyberpunk']['base-300']}/>
                         ))}
                     </div>
                 </div>
