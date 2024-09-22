@@ -1,3 +1,6 @@
+# MVP = themes & image upload
+
+
 # todo
 
 - gør så når en bruger bliver oprettet bliver connectpages row også oprettet
@@ -29,3 +32,5 @@
 - lav backend til settings i header -- det ville sige create/edit af connectpage
 - lav connectpage om sådan så der er et profil billede, navn, og en beskrivelse https://v0.dev/r/xATi0mTq8Ef
 - gør så 'Links' i sidebar henviser til connectpage
+
+
