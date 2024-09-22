@@ -103,40 +103,56 @@ export default function ConnectPage() {
 
     return (
         <div
-            className="flex flex-col items-center min-h-screen text-white"
-            style={{backgroundColor: themes['cyberpunk']["neutral-content"]}}>
-            <div className="max-w-md w-full px-4 sm:px-6 lg:px-8 py-12">
+            className="relative flex flex-col items-center min-h-screen text-white"
+            style={{backgroundColor: themes['cyberpunk']["neutral-content"]}}
+        >
+            <RetroGrid/>
+            <div className="max-w-md w-full px-4 sm:px-6 lg:px-8 py-12 relative z-10">
                 <div className="flex flex-col items-center space-y-6">
                     <div className="rounded-full w-32 h-32 overflow-hidden">
                         <img src="https://placehold.co/128x128" alt="Profile" className="w-full h-full object-cover"/>
                     </div>
                     <div className="text-center space-y-1">
-                        <h1 className="text-3xl font-bold" // her skal man kunne ændre font via edit settings
+                        <h1
+                            className="text-3xl font-bold"
                             style={{
                                 color: themes["cyberpunk"]['primary-content'],
-                                fontFamily: "Lucida Sans Typewriter"
-                            }}>
-                            {settings?.title}</h1>
-                        {settings?.subtitle ? <p className="text-gray-300 font-semibold"
-                                                 style={{
-                                                     color: themes['cyberpunk']['neutral-focus'],
-                                                     fontFamily: "Lucida Sans Typewriter"
-                                                 }}>{settings.subtitle}</p> : null}
+                                fontFamily: "Lucida Sans Typewriter",
+                            }}
+                        >
+                            {settings?.title}
+                        </h1>
+                        {settings?.subtitle ? (
+                            <p
+                                className="text-gray-300 font-semibold"
+                                style={{
+                                    color: themes['cyberpunk']['neutral-focus'],
+                                    fontFamily: "Lucida Sans Typewriter",
+                                }}
+                            >
+                                {settings.subtitle}
+                            </p>
+                        ) : null}
                     </div>
                     <div className="w-full space-y-4">
                         {links.map((link: link) => (
-                            <ConnectPageLink key={link.id} handle={link.handle} url={link.url} imgurl={link.img_url}
-                                             handleColor={themes['cyberpunk']["secondary"]}
-                                             linkColor={themes['cyberpunk']['base-200']}
-                                             linkTitle={themes['cyberpunk']['primary-content']}
-                                             onHoverColor={themes['cyberpunk']['base-300']}
-                                             fontFamily={"Lucida Sans Typewriter"}/>
+                            <ConnectPageLink
+                                key={link.id}
+                                handle={link.handle}
+                                url={link.url}
+                                imgurl={link.img_url}
+                                handleColor={themes['cyberpunk']["secondary"]}
+                                linkColor={themes['cyberpunk']['base-200']}
+                                linkTitle={themes['cyberpunk']['primary-content']}
+                                onHoverColor={themes['cyberpunk']['base-300']}
+                                fontFamily={"Lucida Sans Typewriter"}
+                            />
                         ))}
                     </div>
                 </div>
             </div>
-            <RetroGrid/>
         </div>
+
     )
 
 
