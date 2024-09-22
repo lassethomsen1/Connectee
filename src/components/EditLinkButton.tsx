@@ -125,13 +125,13 @@ export default function EditLinkButton({id, onEdit}: { id: number, onEdit: (id: 
                             />
                         </div>
                         <div className="grid items-center grid-cols-4 gap-4">
-                            <Label htmlFor="image-url" className="text-left">
+                            <Label htmlFor="img_url" className="text-left">
                                 Image URL
                             </Label>
                             <Input
                                 required
-                                id="image-url"
-                                name="imageUrl"
+                                id="img_url"
+                                name="img_url"
                                 onChange={handleChange}
                                 value={formData.img_url}
                                 placeholder="example.com/image.jpg"
