@@ -7,10 +7,11 @@ type LinkProps = {
     handle: string,
     url: string,
     imgurl: string
-    handleColor: {color: string}
+    handleColor: string
     linkColor: string
     onHoverColor: string
-    linkTitle: {color: string}
+    linkTitle: string
+    fontFamily: string
 };
 /* det her skal være i supabase
 const icons = {
@@ -23,7 +24,7 @@ const icons = {
     "x": "https://cdn-icons-png.flaticon.com/512/5968/5968958.png"
 }
 */
-export default function ConnectPageLink({imgurl, handle, url, handleColor,linkTitle, linkColor, onHoverColor,}: LinkProps) {
+export default function ConnectPageLink({imgurl, handle, url, handleColor,linkTitle, linkColor, onHoverColor, fontFamily}: LinkProps) {
     url = ensureUrlFormat(url);
     const [isHovered, setIsHovered] = useState(false); //det her virker
     return (<Link
@@ -38,8 +39,8 @@ export default function ConnectPageLink({imgurl, handle, url, handleColor,linkTi
                 <img className={"max-w-6 max-h-6 "} src={imgurl} alt={"icon"}/>
             </div>
             <div className="flex-1">
-                <h3 className="font-semibold" style={linkTitle}>Instagram</h3>
-                <p className="text-sm font-bold" style={handleColor}>{handle}</p>
+                <h3 className="font-semibold" style={{color: linkTitle, fontFamily: fontFamily}}>Instagram</h3>
+                <p className="text-sm font-bold" style={{color: handleColor}}>{handle}</p>
             </div>
         </Link>
 
