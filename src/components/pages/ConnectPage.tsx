@@ -85,9 +85,19 @@ export default function ConnectPage() {
             "link-hover-color": "#81a1c1",    // Slightly deeper blue for hover effects
             "fontFamily": "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif",
             specialEffects: null
-        }
+        },
+        oldMoney: {
+            "title-color": "#2e3b32",         // Deep, muted green for a sophisticated look
+            "handle-color": "#786850",        // Darker, muted gold-brown for handles
+            "page-background": "#f5f2eb",     // Soft, off-white or cream for an elegant background
+            "subtitle-color": "#4a4a48",      // Dark neutral gray for a refined feel
+            "link-color": "#a7895e",          // Rich, antique gold for links
+            "link-hover-color": "#8c7249",    // Slightly darker, vintage gold for hover effects
+            "fontFamily": "'Georgia', 'Times New Roman', Times, serif",  // Classic serif fonts for an old-world feel
+            specialEffects: null
+        },
     }
-    const theme = themes['cyberpunk'];
+    const theme = themes['nordic'];
     return (
         <div
             className="relative flex flex-col items-center min-h-screen text-white"
