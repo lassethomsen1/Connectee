@@ -16,6 +16,10 @@ interface settings {
     bg_url: string;
     subtitle: string;
 }
+enum specialEffects {
+    retroGrid,
+
+}
 
 export default function ConnectPage() {
     const {userid} = useParams();
@@ -59,6 +63,8 @@ export default function ConnectPage() {
     }, [userid]);
     //https://themes.ionevolve.com/
     //https://github.com/saadeghi/daisyui/blob/master/src/theming/themes.js
+
+    //de her themes skal være i supabase på en eller anden måde
     const themes = {
         cyberpunk: {
             'title-color': '#000000',
@@ -68,13 +74,17 @@ export default function ConnectPage() {
             'link-color': '#d6c800',
             'link-hover-color': '#b8ab00',
             'fontFamily': "ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace",
+            specialEffects: specialEffects.retroGrid
         },
-        retroMoney: {
-            'primary': '#E5D9B6',
-            'primary-content': '#A4BE7B',
-            'secondary': '#5F8D4E',
-            'secondary-content': '#3A5A40',
-            'accent': '#344E41'
+        nordic: {
+            "title-color": "#2b3a42",         // A muted, icy blue-gray for titles
+            "handle-color": "#5e81ac",        // Cold yet vibrant arctic blue
+            "page-background": "#d8dee9",     // Soft, snow-like white with a hint of gray
+            "subtitle-color": "#4c566a",      // Darker, cooler gray for subtitles
+            "link-color": "#88c0d0",          // Frosty, bright blue for links
+            "link-hover-color": "#81a1c1",    // Slightly deeper blue for hover effects
+            "fontFamily": "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif",
+            specialEffects: null
         }
     }
     const theme = themes['cyberpunk'];
@@ -83,7 +93,7 @@ export default function ConnectPage() {
             className="relative flex flex-col items-center min-h-screen text-white"
             style={{backgroundColor: theme["page-background"]}}
         >
-            <RetroGrid/>
+            {theme.specialEffects === specialEffects.retroGrid ? <RetroGrid /> : null}
             <div className="max-w-md w-full px-4 sm:px-6 lg:px-8 py-12 relative z-10">
                 <div className="flex flex-col items-center space-y-6">
                     <div className="rounded-full w-32 h-32 overflow-hidden">
