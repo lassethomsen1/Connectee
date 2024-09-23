@@ -29,7 +29,7 @@ export default function ConnectPageLink({imgurl, handle, url, handleColor,linkTi
     const [isHovered, setIsHovered] = useState(false); //det her virker
     return (<Link
             to={url}
-            className="flex items-center gap-4 transition-colors rounded-lg p-4 bg-opacity-30 bg-white/30 backdrop-blur-md border border-white/10 shadow-lg"
+            className="flex items-center gap-4 transition-colors rounded-lg p-4 border border-white/10 hover:shadow-2xl"
             style={{backgroundColor: isHovered ? onHoverColor : linkColor}}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}>
@@ -40,7 +40,7 @@ export default function ConnectPageLink({imgurl, handle, url, handleColor,linkTi
             </div>
             <div className="flex-1">
                 <h3 className="font-semibold" style={{color: linkTitle, fontFamily: fontFamily}}>Instagram</h3>
-                <p className="text-sm" style={{color: handleColor, fontFamily: fontFamily}}>{handle}</p>
+                <p className="text-sm font-light" style={{color: handleColor, fontFamily: fontFamily}}>{handle}</p>
             </div>
         </Link>
     )

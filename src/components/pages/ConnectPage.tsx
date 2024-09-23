@@ -134,8 +134,6 @@ export default function ConnectPage() {
         </div>
 
     )
-
-
 }
 /*<div className={"absolute bg-center bg-cover h-screen w-screen"} style={{backgroundImage: `url(${settings?.bg_url})`}}>
             <Title title={settings?.title}></Title>
