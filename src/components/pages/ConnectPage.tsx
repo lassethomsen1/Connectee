@@ -61,12 +61,8 @@ export default function ConnectPage() {
     //https://github.com/saadeghi/daisyui/blob/master/src/theming/themes.js
     const themes = {
         cyberpunk: {
-            'primary': '#ff7094',
             'title-color': '#000000',
-            'accent': '#c07eec',
             'handle-color': '#ad55e7',
-            'secondary': '#1c92f2',
-            'secondary-focus': '#5bbedc', // hardcoded hex value
             'page-background': '#ffee00',
             'subtitle-color': '#090901',
             'link-color': '#d6c800',
