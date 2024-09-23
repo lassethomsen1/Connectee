@@ -62,15 +62,15 @@ export default function ConnectPage() {
     const themes = {
         cyberpunk: {
             'primary': '#ff7094',
-            'primary-content': '#000000',
+            'title-color': '#000000',
             'accent': '#c07eec',
-            'accent-focus': '#ad55e7',
+            'handle-color': '#ad55e7',
             'secondary': '#1c92f2',
             'secondary-focus': '#5bbedc', // hardcoded hex value
-            'neutral-content': '#ffee00',
-            'neutral-focus': '#090901',
-            'base-200': '#d6c800',
-            'base-300': '#b8ab00',
+            'page-background': '#ffee00',
+            'subtitle-color': '#090901',
+            'link-color': '#d6c800',
+            'link-hover-color': '#b8ab00',
             'fontFamily': "ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace",
         },
         retroMoney: {
@@ -81,10 +81,11 @@ export default function ConnectPage() {
             'accent': '#344E41'
         }
     }
+    const theme = themes['cyberpunk'];
     return (
         <div
             className="relative flex flex-col items-center min-h-screen text-white"
-            style={{backgroundColor: themes['cyberpunk']["neutral-content"]}}
+            style={{backgroundColor: theme["page-background"]}}
         >
             <RetroGrid/>
             <div className="max-w-md w-full px-4 sm:px-6 lg:px-8 py-12 relative z-10">
@@ -96,8 +97,8 @@ export default function ConnectPage() {
                         <h1
                             className="text-3xl font-bold"
                             style={{
-                                color: themes["cyberpunk"]['primary-content'],
-                                fontFamily: themes['cyberpunk']['fontFamily'],
+                                color: theme['title-color'],
+                                fontFamily: theme['fontFamily'],
                             }}
                         >
                             {settings?.title}
@@ -106,8 +107,8 @@ export default function ConnectPage() {
                             <p
                                 className="text-gray-300 font-semibold"
                                 style={{
-                                    color: themes['cyberpunk']['neutral-focus'],
-                                    fontFamily: themes['cyberpunk']["fontFamily"],
+                                    color: theme['subtitle-color'],
+                                    fontFamily: theme["fontFamily"],
                                 }}
                             >
                                 {settings.subtitle}
@@ -121,11 +122,11 @@ export default function ConnectPage() {
                                 handle={link.handle}
                                 url={link.url}
                                 imgurl={link.img_url}
-                                handleColor={themes['cyberpunk']["accent-focus"]}
-                                linkColor={themes['cyberpunk']['base-200']}
-                                linkTitle={themes['cyberpunk']['primary-content']}
-                                onHoverColor={themes['cyberpunk']['base-300']}
-                                fontFamily={themes['cyberpunk']['fontFamily']}
+                                handleColor={theme["handle-color"]}
+                                linkColor={theme['link-color']}
+                                linkTitle={theme['title-color']}
+                                onHoverColor={theme['link-hover-color']}
+                                fontFamily={theme['fontFamily']}
                             />
                         ))}
                     </div>
