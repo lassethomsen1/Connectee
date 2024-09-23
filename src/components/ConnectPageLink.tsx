@@ -40,7 +40,7 @@ export default function ConnectPageLink({imgurl, handle, url, handleColor,linkTi
             </div>
             <div className="flex-1">
                 <h3 className="font-semibold" style={{color: linkTitle, fontFamily: fontFamily}}>Instagram</h3>
-                <p className="text-sm font-bold" style={{color: handleColor}}>{handle}</p>
+                <p className="text-sm" style={{color: handleColor, fontFamily: fontFamily}}>{handle}</p>
             </div>
         </Link>
     )
