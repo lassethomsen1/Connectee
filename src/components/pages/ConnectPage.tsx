@@ -58,6 +58,7 @@ export default function ConnectPage() {
         fetchSettings();
     }, [userid]);
     //https://themes.ionevolve.com/
+    //https://github.com/saadeghi/daisyui/blob/master/src/theming/themes.js
     const themes = {
         cyberpunk: {
             'primary': '#ff7094',
