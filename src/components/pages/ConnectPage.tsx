@@ -70,6 +70,7 @@ export default function ConnectPage() {
             'neutral-focus': '#090901',
             'base-200': '#d6c800',
             'base-300': '#b8ab00',
+            'fontFamily': "ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace",
         },
     }
     /*
@@ -117,7 +118,7 @@ export default function ConnectPage() {
                             className="text-3xl font-bold"
                             style={{
                                 color: themes["cyberpunk"]['primary-content'],
-                                fontFamily: "Lucida Sans Typewriter",
+                                fontFamily: themes['cyberpunk']['fontFamily'],
                             }}
                         >
                             {settings?.title}
@@ -127,7 +128,7 @@ export default function ConnectPage() {
                                 className="text-gray-300 font-semibold"
                                 style={{
                                     color: themes['cyberpunk']['neutral-focus'],
-                                    fontFamily: "Lucida Sans Typewriter",
+                                    fontFamily: themes['cyberpunk']["fontFamily"],
                                 }}
                             >
                                 {settings.subtitle}
@@ -145,7 +146,7 @@ export default function ConnectPage() {
                                 linkColor={themes['cyberpunk']['base-200']}
                                 linkTitle={themes['cyberpunk']['primary-content']}
                                 onHoverColor={themes['cyberpunk']['base-300']}
-                                fontFamily={"Lucida Sans Typewriter"}
+                                fontFamily={themes['cyberpunk']['fontFamily']}
                             />
                         ))}
                     </div>
