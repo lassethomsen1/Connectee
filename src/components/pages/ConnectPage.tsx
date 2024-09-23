@@ -121,7 +121,7 @@ export default function ConnectPage() {
                                 handle={link.handle}
                                 url={link.url}
                                 imgurl={link.img_url}
-                                handleColor={themes['cyberpunk']["secondary"]}
+                                handleColor={themes['cyberpunk']["accent-focus"]}
                                 linkColor={themes['cyberpunk']['base-200']}
                                 linkTitle={themes['cyberpunk']['primary-content']}
                                 onHoverColor={themes['cyberpunk']['base-300']}
