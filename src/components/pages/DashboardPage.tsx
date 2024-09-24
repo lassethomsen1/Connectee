@@ -59,7 +59,7 @@ export default function DashboardPage() {
             console.error("Invalid updated link data:", updatedLink);
             return;
         }
-
+        //FIX de her fucking types
         setLinks((prevLinks) =>
             prevLinks.map((link) => (link.id === updatedLink.id ? updatedLink : link))
         );
