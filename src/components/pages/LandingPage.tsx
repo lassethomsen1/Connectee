@@ -7,6 +7,7 @@ import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/componen
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import {cn} from "../../lib/utils.ts";
 import AnimatedGridPattern from "../magicui/animated-grid-pattern.tsx";
+import {LinkIcon} from "../Icons.tsx";
 
 export default function LandingPage() {
     return (
@@ -207,7 +208,7 @@ export default function LandingPage() {
         </div>
     )
 }
-
+/*
 function LinkIcon(props) {
     return (
         <svg
@@ -227,3 +228,4 @@ function LinkIcon(props) {
         </svg>
     )
 }
+*/
