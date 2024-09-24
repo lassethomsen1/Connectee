@@ -2,7 +2,7 @@
 
 
 # todo
-
+- lav sign in om (https://floatui.com/components/authentication)
 - gør så når en bruger bliver oprettet bliver connectpages row også oprettet
 - lav image upload til connectpage i dashboard (eller i settings til connectpage) (brug https://api.imgbb.com/)
 - skal der være pre-set icons til nogle links? -- det kunne være nogle icons fra react icons eller sådan noget
