@@ -1,4 +1,4 @@
-# MVP = themes & image upload
+# MVP = themes, signIn/up(med forskellige authO) & image upload
 
 
 # todo
@@ -7,11 +7,8 @@
 - lav image upload til connectpage i dashboard (eller i settings til connectpage) (brug https://api.imgbb.com/)
 - skal der være pre-set icons til nogle links? -- det kunne være nogle icons fra react icons eller sådan noget
 - gør landing page pænere - en bedre titel og en bedre beskrivelse
-- gør landing page mere funktionel
+- gør landing page mere funktionel - tilføj carousel med eksempler på connectpages
 - tilføj en example page til landing page som viser eksempler på connectpages
-- check om signup virker
-- lav ui til at selecte themes til connectpage
-- lav themes til connectpage (husk at lav det i supabase)
 
 ## småting
 - måske lave formen om i createLinkInputForm.tsx til shadcn's Form hook
@@ -21,6 +18,7 @@
 - find ud af om bruger skal kunne uploade sit eget baggrundsbillede eller brugeren skal finde url'en til billedet
 - når man klikker på edit fetcher den linket men alle links er jo fetchet i dashboard.tsx
 - tilføj robots.txt
+- lav flere themes
 
 ## done
 - gør så submit knappen lukker dialog boxen i CreateLinkInputForm.tsx
@@ -33,5 +31,7 @@
 - lav connectpage om sådan så der er et profil billede, navn, og en beskrivelse https://v0.dev/r/xATi0mTq8Ef
 - gør så 'Links' i sidebar henviser til connectpage
 - gør så i edit link at der bliver sikret 'https://' foran linket
-
+- lav ui til at selecte themes til connectpage
+- lav themes til connectpage (husk at lav det i supabase)
+- check om signup virker
 
