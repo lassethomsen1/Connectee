@@ -59,32 +59,38 @@ function UserMenu({userid}: { userid: string }) {
     const [formData, setFormData] = useState({
         title: "",
         bg_url: "",
+        subtitle: "",
+        theme_id: "",
     });
+    const [themes, setThemes] = useState([]); // State to store themes
 
     useEffect(() => {
         async function fetchSettings() {
             if (isSettingsOpen) {
                 const {data, error} = await supabase
                     .from("connectpages")
-                    .select("title, bg_url, subtitle")
+                    .select("title, bg_url, subtitle, theme_id, themes (id ,name)")
                     .eq("user_id", userid);
 
                 if (error) {
                     console.error("Error fetching connectpage settings:", error.message);
-                } else {
-                    if (data && data.length > 0) {
-                        setFormData({
-                            title: data[0].title || "",
-                            bg_url: data[0].bg_url || "",
-                            subtitle: data[0].subtitle || "",
-                        });
-                    }
+                } else if (data && data.length > 0) {
+                    setFormData({
+                        title: data[0].title || "",
+                        bg_url: data[0].bg_url || "",
+                        subtitle: data[0].subtitle || "",
+                        theme_id: data[0].theme_id || "",
+                    });
+                    setThemes(data[0].themes || []);
                 }
             }
         }
 
         fetchSettings();
     }, [userid, isSettingsOpen]);
+    const handleThemeChange = (value) => {
+        setFormData({ ...formData, theme_id: value });
+    };
     //TODO find ud af hvordan man skal set user = null
     const handleSignOut = async () => {
         await supabase.auth.signOut();
@@ -108,6 +114,7 @@ function UserMenu({userid}: { userid: string }) {
                 title: formData.title,
                 bg_url: formData.bg_url,
                 subtitle: formData.subtitle,
+                theme_id: formData.theme_id,
             })
             .eq("user_id", userid)
             .select("*");
@@ -183,12 +190,11 @@ function UserMenu({userid}: { userid: string }) {
                                 <Label htmlFor="theme" className="text-left">
                                     Theme:
                                 </Label>
-                                <Select>
+                                <Select onValueChange={handleThemeChange}>
                                     <SelectTrigger className={"col-span-3"}>pick a theme</SelectTrigger>
                                     <SelectContent>
-                                        <SelectItem value={"light"}>Light</SelectItem>
-                                        <SelectItem value={"dark"}>Dark</SelectItem>
-                                        <SelectItem value={"coffee"}>Coffee</SelectItem>
+                                        <SelectItem value={"3"}>cyberpunk</SelectItem>
+                                        <SelectItem value={"5"}>nordic</SelectItem>
                                     </SelectContent>
                                 </Select>
                             </div>
