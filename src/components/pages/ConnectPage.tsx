@@ -10,14 +10,25 @@ interface link {
     url: string;
     img_url: string;
 }
-
+interface theme{
+    id: number;
+    title_color: string;
+    handle_color: string;
+    page_background: string;
+    subtitle_color: string;
+    link_color: string;
+    link_hover_color: string;
+    fontFamily: string;
+    specialEffects: specialEffects;
+}
 interface settings {
     title: string;
     bg_url: string;
     subtitle: string;
+    theme: theme;
 }
 enum specialEffects {
-    retroGrid,
+    retroGrid = "retroGrid",
 
 }
 
@@ -48,7 +59,22 @@ export default function ConnectPage() {
         async function fetchSettings() {
             const {data, error} = await supabase
                 .from("connectpages")
-                .select("title, bg_url, subtitle")
+                .select(`
+                title,
+                subtitle,
+                theme_id,
+                themes (
+                    id,
+                    title_color,
+                    handle_color,
+                    page_background,
+                    subtitle_color,
+                    link_color,
+                    link_hover_color,
+                    fontFamily,
+                    specialEffects
+                )
+            `)
                 .eq("user_id", userid)
                 .single();
 
@@ -56,36 +82,22 @@ export default function ConnectPage() {
                 console.error("Error fetching settings:", error.message);
                 return;
             }
-            setSettings(data);
+
+            // Ensure the fetched theme data is nested correctly
+            setSettings({
+                ...data,
+                theme: data.themes // Explicitly assign the nested 'themes' data to 'theme'
+            });
         }
 
         fetchSettings();
     }, [userid]);
+
     //https://themes.ionevolve.com/
     //https://github.com/saadeghi/daisyui/blob/master/src/theming/themes.js
 
     //de her themes skal være i supabase på en eller anden måde
     const themes = {
-        cyberpunk: {
-            'title-color': '#000000',
-            'handle-color': '#ad55e7',
-            'page-background': '#ffee00',
-            'subtitle-color': '#090901',
-            'link-color': '#d6c800',
-            'link-hover-color': '#b8ab00',
-            'fontFamily': "ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace",
-            specialEffects: specialEffects.retroGrid
-        },
-        nordic: {
-            "title-color": "#2b3a42",         // A muted, icy blue-gray for titles
-            "handle-color": "#5e81ac",        // Cold yet vibrant arctic blue
-            "page-background": "#d8dee9",     // Soft, snow-like white with a hint of gray
-            "subtitle-color": "#4c566a",      // Darker, cooler gray for subtitles
-            "link-color": "#88c0d0",          // Frosty, bright blue for links
-            "link-hover-color": "#81a1c1",    // Slightly deeper blue for hover effects
-            "fontFamily": "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif",
-            specialEffects: null
-        },
         oldMoney: {
             "title-color": "#2e3b32",         // Deep, muted green for a sophisticated look
             "handle-color": "#786850",        // Darker, muted gold-brown for handles
@@ -97,13 +109,13 @@ export default function ConnectPage() {
             specialEffects: null
         },
     }
-    const theme = themes['nordic'];
+    const theme = settings?.theme;
     return (
         <div
             className="relative flex flex-col items-center min-h-screen text-white"
-            style={{backgroundColor: theme["page-background"]}}
+            style={{backgroundColor: theme?.page_background}}
         >
-            {theme.specialEffects === specialEffects.retroGrid ? <RetroGrid /> : null}
+            {theme?.specialEffects.includes("retroGrid") ? <RetroGrid /> : null}
             <div className="max-w-md w-full px-4 sm:px-6 lg:px-8 py-12 relative z-10">
                 <div className="flex flex-col items-center space-y-6">
                     <div className="rounded-full w-32 h-32 overflow-hidden">
@@ -113,8 +125,8 @@ export default function ConnectPage() {
                         <h1
                             className="text-3xl font-bold"
                             style={{
-                                color: theme['title-color'],
-                                fontFamily: theme['fontFamily'],
+                                color: theme?.title_color,
+                                fontFamily: theme?.fontFamily,
                             }}
                         >
                             {settings?.title}
@@ -123,8 +135,8 @@ export default function ConnectPage() {
                             <p
                                 className="text-gray-300 font-semibold"
                                 style={{
-                                    color: theme['subtitle-color'],
-                                    fontFamily: theme["fontFamily"],
+                                    color: theme?.subtitle_color,
+                                    fontFamily: theme?.fontFamily,
                                 }}
                             >
                                 {settings.subtitle}
@@ -138,11 +150,11 @@ export default function ConnectPage() {
                                 handle={link.handle}
                                 url={link.url}
                                 imgurl={link.img_url}
-                                handleColor={theme["handle-color"]}
-                                linkColor={theme['link-color']}
-                                linkTitle={theme['title-color']}
-                                onHoverColor={theme['link-hover-color']}
-                                fontFamily={theme['fontFamily']}
+                                handleColor={theme?.handle_color}
+                                linkColor={theme?.link_color}
+                                linkTitle={theme?.title_color}
+                                onHoverColor={theme?.link_hover_color}
+                                fontFamily={theme?.fontFamily}
                             />
                         ))}
                     </div>
