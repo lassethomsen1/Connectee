@@ -16,6 +16,10 @@ interface settings {
     bg_url: string;
     subtitle: string;
 }
+enum specialEffects {
+    retroGrid,
+
+}
 
 export default function ConnectPage() {
     const {userid} = useParams();
@@ -59,34 +63,47 @@ export default function ConnectPage() {
     }, [userid]);
     //https://themes.ionevolve.com/
     //https://github.com/saadeghi/daisyui/blob/master/src/theming/themes.js
+
+    //de her themes skal være i supabase på en eller anden måde
     const themes = {
         cyberpunk: {
-            'primary': '#ff7094',
-            'primary-content': '#000000',
-            'accent': '#c07eec',
-            'accent-focus': '#ad55e7',
-            'secondary': '#1c92f2',
-            'secondary-focus': '#5bbedc', // hardcoded hex value
-            'neutral-content': '#ffee00',
-            'neutral-focus': '#090901',
-            'base-200': '#d6c800',
-            'base-300': '#b8ab00',
+            'title-color': '#000000',
+            'handle-color': '#ad55e7',
+            'page-background': '#ffee00',
+            'subtitle-color': '#090901',
+            'link-color': '#d6c800',
+            'link-hover-color': '#b8ab00',
             'fontFamily': "ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace",
+            specialEffects: specialEffects.retroGrid
         },
-        retroMoney: {
-            'primary': '#E5D9B6',
-            'primary-content': '#A4BE7B',
-            'secondary': '#5F8D4E',
-            'secondary-content': '#3A5A40',
-            'accent': '#344E41'
-        }
+        nordic: {
+            "title-color": "#2b3a42",         // A muted, icy blue-gray for titles
+            "handle-color": "#5e81ac",        // Cold yet vibrant arctic blue
+            "page-background": "#d8dee9",     // Soft, snow-like white with a hint of gray
+            "subtitle-color": "#4c566a",      // Darker, cooler gray for subtitles
+            "link-color": "#88c0d0",          // Frosty, bright blue for links
+            "link-hover-color": "#81a1c1",    // Slightly deeper blue for hover effects
+            "fontFamily": "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif",
+            specialEffects: null
+        },
+        oldMoney: {
+            "title-color": "#2e3b32",         // Deep, muted green for a sophisticated look
+            "handle-color": "#786850",        // Darker, muted gold-brown for handles
+            "page-background": "#f5f2eb",     // Soft, off-white or cream for an elegant background
+            "subtitle-color": "#4a4a48",      // Dark neutral gray for a refined feel
+            "link-color": "#a7895e",          // Rich, antique gold for links
+            "link-hover-color": "#8c7249",    // Slightly darker, vintage gold for hover effects
+            "fontFamily": "'Georgia', 'Times New Roman', Times, serif",  // Classic serif fonts for an old-world feel
+            specialEffects: null
+        },
     }
+    const theme = themes['nordic'];
     return (
         <div
             className="relative flex flex-col items-center min-h-screen text-white"
-            style={{backgroundColor: themes['cyberpunk']["neutral-content"]}}
+            style={{backgroundColor: theme["page-background"]}}
         >
-            <RetroGrid/>
+            {theme.specialEffects === specialEffects.retroGrid ? <RetroGrid /> : null}
             <div className="max-w-md w-full px-4 sm:px-6 lg:px-8 py-12 relative z-10">
                 <div className="flex flex-col items-center space-y-6">
                     <div className="rounded-full w-32 h-32 overflow-hidden">
@@ -96,8 +113,8 @@ export default function ConnectPage() {
                         <h1
                             className="text-3xl font-bold"
                             style={{
-                                color: themes["cyberpunk"]['primary-content'],
-                                fontFamily: themes['cyberpunk']['fontFamily'],
+                                color: theme['title-color'],
+                                fontFamily: theme['fontFamily'],
                             }}
                         >
                             {settings?.title}
@@ -106,8 +123,8 @@ export default function ConnectPage() {
                             <p
                                 className="text-gray-300 font-semibold"
                                 style={{
-                                    color: themes['cyberpunk']['neutral-focus'],
-                                    fontFamily: themes['cyberpunk']["fontFamily"],
+                                    color: theme['subtitle-color'],
+                                    fontFamily: theme["fontFamily"],
                                 }}
                             >
                                 {settings.subtitle}
@@ -121,11 +138,11 @@ export default function ConnectPage() {
                                 handle={link.handle}
                                 url={link.url}
                                 imgurl={link.img_url}
-                                handleColor={themes['cyberpunk']["accent-focus"]}
-                                linkColor={themes['cyberpunk']['base-200']}
-                                linkTitle={themes['cyberpunk']['primary-content']}
-                                onHoverColor={themes['cyberpunk']['base-300']}
-                                fontFamily={themes['cyberpunk']['fontFamily']}
+                                handleColor={theme["handle-color"]}
+                                linkColor={theme['link-color']}
+                                linkTitle={theme['title-color']}
+                                onHoverColor={theme['link-hover-color']}
+                                fontFamily={theme['fontFamily']}
                             />
                         ))}
                     </div>
