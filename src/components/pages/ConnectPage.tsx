@@ -115,7 +115,7 @@ export default function ConnectPage() {
             className="relative flex flex-col items-center min-h-screen text-white"
             style={{backgroundColor: theme?.page_background}}
         >
-            {theme?.specialEffects.includes("retroGrid") ? <RetroGrid /> : null}
+            {theme?.specialEffects.includes(specialEffects.retroGrid) ? <RetroGrid /> : null}
             <div className="max-w-md w-full px-4 sm:px-6 lg:px-8 py-12 relative z-10">
                 <div className="flex flex-col items-center space-y-6">
                     <div className="rounded-full w-32 h-32 overflow-hidden">
