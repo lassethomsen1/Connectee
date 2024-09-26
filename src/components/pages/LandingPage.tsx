@@ -86,8 +86,8 @@ export default function LandingPage() {
                                         />
                                     </CarouselItem>
                                 </CarouselContent>
-                                <CarouselPrevious/>
-                                <CarouselNext/>
+                                {/*<CarouselPrevious/>
+                                    <CarouselNext/>*/}
                             </Carousel>
 
                         </div>
