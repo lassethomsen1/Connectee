@@ -3,31 +3,33 @@
  * @see https://v0.dev/t/vaJxj53b4si
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card"
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
+import {Card, CardHeader, CardTitle, CardContent, CardFooter} from "@/components/ui/card"
+import {Avatar, AvatarImage, AvatarFallback} from "@/components/ui/avatar"
 import {cn} from "../../lib/utils.ts";
 import AnimatedGridPattern from "../magicui/animated-grid-pattern.tsx";
 import {LinkIcon} from "../Icons.tsx";
+import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious} from "../ui/carousel.tsx";
 
 export default function LandingPage() {
     return (
         <div className="flex flex-col min-h-[100dvh]">
             <header className="px-4 lg:px-6 h-14 flex items-center">
                 <a href="#" className="flex items-center justify-center">
-                    <LinkIcon className="h-6 w-6" />
+                    <LinkIcon className="h-6 w-6"/>
                     <span className="sr-only">Connectee</span>
                 </a>
                 <nav className="ml-auto flex gap-4 sm:gap-6">
-                    <a href="#" className="text-sm font-medium hover:underline underline-offset-4" >
+                    <a href="#" className="text-sm font-medium hover:underline underline-offset-4">
                         Features
                     </a>
-                    <a href="#" className="text-sm font-medium hover:underline underline-offset-4" >
+                    <a href="#" className="text-sm font-medium hover:underline underline-offset-4">
                         About
                     </a>
-                    <a href="/hub/7afb82ac-8760-4aa4-8bc4-1df90988fb56" className="text-sm font-medium hover:underline underline-offset-4" >
+                    <a href="/hub/7afb82ac-8760-4aa4-8bc4-1df90988fb56"
+                       className="text-sm font-medium hover:underline underline-offset-4">
                         Contact
                     </a>
-                    <a href="/login" className="text-sm font-medium hover:underline underline-offset-4" >
+                    <a href="/login" className="text-sm font-medium hover:underline underline-offset-4">
                         Login
                     </a>
                 </nav>
@@ -42,7 +44,8 @@ export default function LandingPage() {
                                         <span className={"text-primary"}>Simplify </span>Your Online Presence
                                     </h1>
                                     <p className="max-w-[600px] text-muted-foreground md:text-xl">
-                                        Create a beautiful, customizable landing page to showcase all your links in one place. No coding
+                                        Create a beautiful, customizable landing page to showcase all your links in one
+                                        place. No coding
                                         required.
                                     </p>
                                 </div>
@@ -55,13 +58,38 @@ export default function LandingPage() {
                                     </a>
                                 </div>
                             </div>
-                            <img
+                            {/*<img
                                 src="https://placehold.co/550x550"
                                 alt="Hero"
                                 className="mx-auto aspect-square overflow-hidden rounded-xl object-cover sm:w-full lg:order-last"
                                 width="550"
                                 height="550"
-                            />
+                            />*/}
+                            <Carousel>
+                                <CarouselContent>
+                                    <CarouselItem>
+                                        <img
+                                            src="https://placehold.co/550x550"
+                                            alt="Hero"
+                                            className="mx-auto aspect-square overflow-hidden rounded-xl object-cover sm:w-full lg:order-last"
+                                            width="550"
+                                            height="550"
+                                        />
+                                    </CarouselItem>
+                                    <CarouselItem>
+                                        <img
+                                            src="https://placehold.co/650x650"
+                                            alt="Hero"
+                                            className="mx-auto aspect-square overflow-hidden rounded-xl object-cover sm:w-full lg:order-last"
+                                            width="550"
+                                            height="550"
+                                        />
+                                    </CarouselItem>
+                                </CarouselContent>
+                                <CarouselPrevious/>
+                                <CarouselNext/>
+                            </Carousel>
+
                         </div>
                         <AnimatedGridPattern
                             numSquares={30}
@@ -97,13 +125,15 @@ export default function LandingPage() {
                             <div className="flex flex-col justify-center space-y-4">
                                 <div className="grid gap-1">
                                     <h3 className="text-xl font-bold">Link Management</h3>
-                                    <p className="text-muted-foreground">Easily add, edit, and reorder all your important links.</p>
+                                    <p className="text-muted-foreground">Easily add, edit, and reorder all your
+                                        important links.</p>
                                 </div>
                             </div>
                             <div className="flex flex-col justify-center space-y-4">
                                 <div className="grid gap-1">
                                     <h3 className="text-xl font-bold">Analytics</h3>
-                                    <p className="text-muted-foreground">Track your link clicks and visitor engagement.</p>
+                                    <p className="text-muted-foreground">Track your link clicks and visitor
+                                        engagement.</p>
                                 </div>
                             </div>
                         </div>
@@ -125,14 +155,15 @@ export default function LandingPage() {
                                     </CardHeader>
                                     <CardContent>
                                         <p className="text-muted-foreground">
-                                            "Connectee has been a game-changer for me. It's so easy to manage all my links
+                                            "Connectee has been a game-changer for me. It's so easy to manage all my
+                                            links
                                             in one place and customize the look to match my brand."
                                         </p>
                                     </CardContent>
                                     <CardFooter>
                                         <div className="flex items-center space-x-2">
                                             <Avatar>
-                                                <AvatarImage src="/placeholder-user.jpg" alt="User" />
+                                                <AvatarImage src="/placeholder-user.jpg" alt="User"/>
                                                 <AvatarFallback>JD</AvatarFallback>
                                             </Avatar>
                                             <div>
@@ -148,14 +179,15 @@ export default function LandingPage() {
                                     </CardHeader>
                                     <CardContent>
                                         <p className="text-muted-foreground">
-                                            "I was hesitant to try a new Linktree alternative, but\n this one has been amazing. The analytics
+                                            "I was hesitant to try a new Linktree alternative, but\n this one has been
+                                            amazing. The analytics
                                             have helped me\n understand what content my audience engages with most."
                                         </p>
                                     </CardContent>
                                     <CardFooter>
                                         <div className="flex items-center space-x-2">
                                             <Avatar>
-                                                <AvatarImage src="/placeholder-user.jpg" alt="User" />
+                                                <AvatarImage src="/placeholder-user.jpg" alt="User"/>
                                                 <AvatarFallback>SM</AvatarFallback>
                                             </Avatar>
                                             <div>
@@ -171,15 +203,17 @@ export default function LandingPage() {
                                     </CardHeader>
                                     <CardContent>
                                         <p className="text-muted-foreground">
-                                            "As someone who's not very tech-savvy, I was worried\n about setting up a Linktree alternative.
-                                            But this\n platform is so intuitive and easy to use. I was able to\n get my page up and running in
+                                            "As someone who's not very tech-savvy, I was worried\n about setting up a
+                                            Linktree alternative.
+                                            But this\n platform is so intuitive and easy to use. I was able to\n get my
+                                            page up and running in
                                             no time."
                                         </p>
                                     </CardContent>
                                     <CardFooter>
                                         <div className="flex items-center space-x-2">
                                             <Avatar>
-                                                <AvatarImage src="/placeholder-user.jpg" alt="User" />
+                                                <AvatarImage src="/placeholder-user.jpg" alt="User"/>
                                                 <AvatarFallback>AM</AvatarFallback>
                                             </Avatar>
                                             <div>
@@ -197,10 +231,10 @@ export default function LandingPage() {
             <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
                 <p className="text-xs text-muted-foreground">&copy; 2024 Connectee All rights reserved.</p>
                 <nav className="sm:ml-auto flex gap-4 sm:gap-6">
-                    <a href="#" className="text-xs hover:underline underline-offset-4" >
+                    <a href="#" className="text-xs hover:underline underline-offset-4">
                         Terms of Service
                     </a>
-                    <a href="#" className="text-xs hover:underline underline-offset-4" >
+                    <a href="#" className="text-xs hover:underline underline-offset-4">
                         Privacy
                     </a>
                 </nav>
