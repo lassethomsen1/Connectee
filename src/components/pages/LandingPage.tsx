@@ -69,7 +69,7 @@ export default function LandingPage() {
                                 <CarouselContent>
                                     <CarouselItem>
                                         <img
-                                            src="../../../public/static/images/nordicExample.png"
+                                            src="https://i.postimg.cc/j2J8wcwt/nordic-Example.png"
                                             alt="Hero"
                                             className="mx-auto aspect-square overflow-hidden rounded-xl object-cover sm:w-full lg:order-last"
                                             width="550"
@@ -78,7 +78,7 @@ export default function LandingPage() {
                                     </CarouselItem>
                                     <CarouselItem>
                                         <img
-                                            src="../../../public/static/images/cyberpunk.gif"
+                                            src="https://i.postimg.cc/gJ7S2Q0g/cyberpunk.gif"
                                             alt="Hero"
                                             className="mx-auto aspect-square overflow-hidden rounded-xl object-cover sm:w-full lg:order-last"
                                             width="550"
