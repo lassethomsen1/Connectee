@@ -1,6 +1,6 @@
 # MVP = themes, signIn/up(med forskellige authO) & image upload
 
-
+<mark>**FIND UD AF HVORDAN CONNECTPAGE BLIVER OPRETTET**</mark>
 # todo
 - lav sign in om (https://floatui.com/components/authentication)
 - gør så når en bruger bliver oprettet bliver connectpages row også oprettet
