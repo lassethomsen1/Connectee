@@ -9,6 +9,7 @@
 - gør landing page pænere - en bedre titel og en bedre beskrivelse
 - gør landing page mere funktionel - tilføj carousel med eksempler på connectpages
 - tilføj en example page til landing page som viser eksempler på connectpages
+- ICONS KAN VÆRE FRA LINKETS FAVICON 
 
 ## småting
 - måske lave formen om i createLinkInputForm.tsx til shadcn's Form hook
