@@ -19,3 +19,7 @@ export function ensureUrlFormat(url: string){
 
   return formattedUrl;
 }
+export function getFaviconUrl(url: string) {
+  const urlObj = new URL(url);
+  return `${urlObj.origin}/favicon.ico`;
+}
