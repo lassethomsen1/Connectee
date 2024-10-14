@@ -12,7 +12,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { supabase } from "../supabase.ts";
-import {ensureUrlFormat} from "../lib/utils.ts";
+import {ensureUrlFormat, getFaviconUrl} from "../lib/utils.ts";
 
 export default function CreateLinkInputForm({ user_id, onNewLink }) {
     const [open, setOpen] = useState(false);
@@ -40,7 +40,7 @@ export default function CreateLinkInputForm({ user_id, onNewLink }) {
                 user_id: user_id,
                 url: formData.url,
                 handle: formData.handle,
-                img_url: formData.img_url,
+                img_url: getFaviconUrl(formData.url),
             }])
             .select("*"); // for fetching the newly created link
 
@@ -89,20 +89,6 @@ export default function CreateLinkInputForm({ user_id, onNewLink }) {
                                 onChange={handleChange}
                                 value={formData.handle}
                                 placeholder="mylink"
-                                className="col-span-3"
-                            />
-                        </div>
-                        <div className="grid items-center grid-cols-4 gap-4">
-                            <Label htmlFor="image-url" className="text-left">
-                                Image URL
-                            </Label>
-                            <Input
-                                required
-                                id="image-url"
-                                name="img_url"
-                                onChange={handleChange}
-                                value={formData.img_url}
-                                placeholder="example.com/image.jpg"
                                 className="col-span-3"
                             />
                         </div>
