@@ -118,9 +118,9 @@ export default function ConnectPage() {
             {theme?.specialEffects.includes(specialEffects.retroGrid) ? <RetroGrid /> : null}
             <div className="max-w-md w-full px-4 sm:px-6 lg:px-8 py-12 relative z-10">
                 <div className="flex flex-col items-center space-y-6">
-                    <div className="rounded-full w-32 h-32 overflow-hidden">
+                    {/*<div className="rounded-full w-32 h-32 overflow-hidden">
                         <img src="https://placehold.co/128x128" alt="Profile" className="w-full h-full object-cover"/>
-                    </div>
+                    </div>*/}
                     <div className="text-center space-y-1">
                         <h1
                             className="text-3xl font-bold"
