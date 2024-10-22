@@ -47,7 +47,7 @@ export default function EditLinkButton({id, onEdit}: { id: number, onEdit: (id: 
         fetchLink();
     }, [open, id]);
 
-    const handleChange = (e) => {
+    const handleChange = (e: { target: { name: string; value: string; }; }) => {
         const {name, value} = e.target;
         setFormData({
             ...formData,
