@@ -5,17 +5,14 @@
 - lav sign in om (https://floatui.com/components/authentication)
 - gør så når en bruger bliver oprettet bliver connectpages row også oprettet
 - lav image upload til connectpage i dashboard (eller i settings til connectpage) (brug https://api.imgbb.com/)
-- skal der være pre-set icons til nogle links? -- det kunne være nogle icons fra react icons eller sådan noget
 - gør landing page pænere - en bedre titel og en bedre beskrivelse
 - gør landing page mere funktionel - tilføj carousel med eksempler på connectpages
 - tilføj en example page til landing page som viser eksempler på connectpages
-- ICONS KAN VÆRE FRA LINKETS FAVICON 
 
 ## småting
 - måske lave formen om i createLinkInputForm.tsx til shadcn's Form hook
 - lav en dev/test supabase database (supabase CLI) der skal bruges docker
 - del landing page op i components
-- i login og signup skal der være github icon i stedet for gitlab
 - find ud af om bruger skal kunne uploade sit eget baggrundsbillede eller brugeren skal finde url'en til billedet
 - når man klikker på edit fetcher den linket men alle links er jo fetchet i dashboard.tsx
 - tilføj robots.txt
@@ -35,4 +32,8 @@
 - lav ui til at selecte themes til connectpage
 - lav themes til connectpage (husk at lav det i supabase)
 - check om signup virker
+- get favicon from url
+- i login og signup skal der være github icon i stedet for gitlab
+- skal der være pre-set icons til nogle links? -- det kunne være nogle icons fra react icons eller sådan noget
+
 
