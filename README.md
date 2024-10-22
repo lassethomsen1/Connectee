@@ -1,13 +1,9 @@
-# MVP = themes, signIn/up(med forskellige authO) & image upload
+# MVP = themes, signIn/up(authO) & image upload
 
-<mark>**FIND UD AF HVORDAN CONNECTPAGE BLIVER OPRETTET**</mark>
 # todo
-- lav sign in om (https://floatui.com/components/authentication)
-- gør så når en bruger bliver oprettet bliver connectpages row også oprettet
-- lav image upload til connectpage i dashboard (eller i settings til connectpage) (brug https://api.imgbb.com/)
+- lav sign in om 
+- lav image upload til connectpage i dashboard (eller i settings til connectpage) (brug supabase storage)
 - gør landing page pænere - en bedre titel og en bedre beskrivelse
-- gør landing page mere funktionel - tilføj carousel med eksempler på connectpages
-- tilføj en example page til landing page som viser eksempler på connectpages
 
 ## småting
 - måske lave formen om i createLinkInputForm.tsx til shadcn's Form hook
@@ -17,6 +13,7 @@
 - når man klikker på edit fetcher den linket men alle links er jo fetchet i dashboard.tsx
 - tilføj robots.txt
 - lav flere themes
+- tilføj en example page til landing page som viser eksempler på connectpages
 
 ## done
 - gør så submit knappen lukker dialog boxen i CreateLinkInputForm.tsx
@@ -35,5 +32,7 @@
 - get favicon from url
 - i login og signup skal der være github icon i stedet for gitlab
 - skal der være pre-set icons til nogle links? -- det kunne være nogle icons fra react icons eller sådan noget
+- gør så når en bruger bliver oprettet bliver connectpages row også oprettet
+- gør landing page mere funktionel - tilføj carousel med eksempler på connectpages
 
 
