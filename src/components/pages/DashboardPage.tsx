@@ -1,20 +1,23 @@
-import { Sidebar } from "@/components/Sidebar";
-import { Header } from "@/components/Header";
-import { LinksTable } from "@/components/LinksTable";
-import { useEffect, useState } from "react";
-import { supabase } from "../../supabase.ts";
-import { useNavigate } from "react-router-dom";
+import {Sidebar} from "@/components/Sidebar";
+import {Header} from "@/components/Header";
+import {LinksTable} from "@/components/LinksTable";
+import {useEffect, useState} from "react";
+import {supabase} from "../../supabase.ts";
+import {useNavigate} from "react-router-dom";
 import CreateLinkInputForm from "../CreateLinkInputForm.tsx";
+import {CreateConnectForm} from "../CreateConnectForm.tsx";
+import CreateConnectPageDialog from "../CreateConnectPageDialog.tsx";
 
 export default function DashboardPage() {
     const [user, setUser] = useState<any>(null);
     const [loading, setLoading] = useState(true);
     const [links, setLinks] = useState([]);
+    const [isConnectPageCreated, setIsConnectPageCreated] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
         async function getUserSession() {
-            const { data: { session }, error } = await supabase.auth.getSession();
+            const {data: {session}, error} = await supabase.auth.getSession();
 
             if (error || !session?.user) {
                 navigate("/login"); // Redirect to login if no session is found
@@ -30,7 +33,7 @@ export default function DashboardPage() {
     useEffect(() => {
         async function fetchLinks() {
             if (user?.id) {
-                const { data, error } = await supabase
+                const {data, error} = await supabase
                     .from("url")
                     .select("*")
                     .eq("user_id", user.id);
@@ -45,6 +48,25 @@ export default function DashboardPage() {
 
         fetchLinks(); // Fetch links whenever the `user` is updated
     }, [user]); // Runs whenever the user state changes
+
+    useEffect(() => {
+        async function fetchConnectPage() {
+            if (user?.id) {
+                const {data, error} = await supabase
+                    .from("connectpages")
+                    .select("*")
+                    .eq("user_id", user.id);
+
+                if (error) {
+                    console.error("Error fetching connect page:", error.message);
+                } else {
+                    setIsConnectPageCreated(data.length > 0);
+                }
+            }
+        }
+
+        fetchConnectPage();
+    }, []);
 
     const handleNewLink = async (newLink) => {
         setLinks([...links, newLink]);
@@ -71,15 +93,16 @@ export default function DashboardPage() {
 
     return (
         <div className="grid min-h-screen w-full lg:grid-cols-[280px_1fr]">
-            <Sidebar userid={user.id} />
+            <Sidebar userid={user.id}/>
             <div className="flex flex-col">
-                <Header userid={user.id} />
+                <Header userid={user.id}/>
                 <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-6">
                     <div className="flex items-center">
                         <h1 className="font-semibold text-lg md:text-2xl">Links</h1>
-                        <CreateLinkInputForm onNewLink={handleNewLink} user_id={user.id} />
+                        <CreateLinkInputForm onNewLink={handleNewLink} user_id={user.id}/>
                     </div>
-                    <LinksTable onDelete={handleDeleteLink} onEdit={handleEditLink} links={links} />
+                    {isConnectPageCreated ? null : <CreateConnectPageDialog userid={user.id} isConnectPageCreated={isConnectPageCreated}/>}
+                    <LinksTable onDelete={handleDeleteLink} onEdit={handleEditLink} links={links}/>
                 </main>
             </div>
         </div>
