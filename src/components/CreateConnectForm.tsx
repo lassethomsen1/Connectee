@@ -19,13 +19,13 @@ export function CreateConnectForm({userid}: {userid: string}) {
 
         const {data, error} = await supabase
             .from("connectpages")
-            .insert({
+            .upsert({
                 title: formData.title,
+                userid: userid,
                 bg_url: formData.bg_url,
                 subtitle: formData.subtitle,
                 theme_id: formData.theme_id,
             })
-            .eq("user_id", userid)
             .select("*");
 
         if (error) {
@@ -33,7 +33,9 @@ export function CreateConnectForm({userid}: {userid: string}) {
         } else if (data && data.length > 0) {
             setFormData(data[0]);
         }
+        localStorage.setItem("isConnectPageCreated", "true");
     }
+
     const handleChange = (e: { target: { name: string; value: any; }; }) => {
         const {name, value} = e.target;
         setFormData({
