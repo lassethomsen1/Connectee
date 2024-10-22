@@ -43,7 +43,7 @@ export function CreateConnectForm({userid}: {userid: string}) {
             [name]: value,
         });
     };
-    const handleThemeChange = (value: string) => {
+    const handleThemeChange = (value: bigint) => {
         setFormData({ ...formData, theme_id: value });
     };
     return (
