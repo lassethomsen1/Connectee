@@ -16,6 +16,7 @@
     "skipLibCheck": true,
     "allowJs": true,
     "checkJs": false,
-    "noEmitOnError": false
+    "noEmitOnError": false,
+    "moduleResolution": "classic",
   }
 }
