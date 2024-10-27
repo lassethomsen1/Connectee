@@ -14,6 +14,7 @@
 - tilføj robots.txt
 - lav flere themes
 - tilføj en example page til landing page som viser eksempler på connectpages
+- del components op i folder så det er mere overskueligt
 
 ## done
 - gør så submit knappen lukker dialog boxen i CreateLinkInputForm.tsx
